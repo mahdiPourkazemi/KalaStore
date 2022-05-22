@@ -15,4 +15,7 @@ class App:Application() {
             plant(Timber.DebugTree())
         }
     }
+    companion object{
+        const val BASE_URL="https://woocommerce.maktabsharif.ir/wp-json/wc/v3/"
+    }
 }
