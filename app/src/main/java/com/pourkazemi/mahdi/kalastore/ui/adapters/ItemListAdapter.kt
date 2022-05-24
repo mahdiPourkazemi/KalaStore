@@ -72,13 +72,13 @@ class ItemDiffUtil : DiffUtil.ItemCallback<Kala>() {
         oldItem: Kala,
         newItem: Kala
     ): Boolean {
-        return oldItem == newItem
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
         oldItem: Kala,
         newItem: Kala
     ): Boolean {
-        return (oldItem.id == newItem.id)
+        return (oldItem == newItem)
     }
 }

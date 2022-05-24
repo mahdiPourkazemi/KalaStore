@@ -15,6 +15,9 @@
         android:paddingTop="4dp"
         android:paddingEnd="4dp"
         android:scaleType="centerCrop"
+        android:background="@color/shimmer_color"
+        android:backgroundTint="@color/shimmer_color"
+        android:tint="@color/shimmer_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1.35"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,10 +27,10 @@
         app:layout_constraintVertical_bias="0.0"
         app:shapeAppearance="@style/corneredImageViewRounded"
         app:strokeColor="@color/cyan"
-        app:strokeWidth="2dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:strokeWidth="2dp" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:background="@color/shimmer_color"
         android:id="@+id/textView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -42,5 +45,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="TextView yaaaa" />
+         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

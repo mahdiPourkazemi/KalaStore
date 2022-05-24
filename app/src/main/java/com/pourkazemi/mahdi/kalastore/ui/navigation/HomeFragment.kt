@@ -1,27 +1,28 @@
 package com.pourkazemi.mahdi.kalastore.ui.navigation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.pourkazemi.mahdi.kalastore.R
-import com.pourkazemi.mahdi.kalastore.databinding.FragmentAccountBinding
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentHomeBinding
 import com.pourkazemi.mahdi.kalastore.ui.adapters.ItemListAdapter
 import com.pourkazemi.mahdi.kalastore.ui.viewmodels.ShearedViewModel
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -47,17 +48,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             dateRecyclerView.adapter = dateAdapter
             rateRecyclerView.adapter = rateAdapter
         }
+
         homeViewModel.listOfDateKala.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
-
+                    binding.shimmerRvDate.startShimmer()
                     Timber.tag("mahdiTest").d("error")
                 }
                 is ResultWrapper.Success -> {
+                    binding.apply {
+                        success(dateRecyclerView, dateTv, shimmerRvDate, shimmerTvDate)
+                    }
                     popularAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
-
+                    binding.apply {
+                        error(dateRecyclerView, dateTv, shimmerRvDate, shimmerTvDate)
+                    }
                     Timber.tag("mahdiTest").d("error")
                 }
             }
@@ -65,14 +72,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         homeViewModel.listOfPopularKala.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
-
+                    binding.shimmerRvPopular.startShimmer()
                     Timber.tag("mahdiTest").d("error")
                 }
                 is ResultWrapper.Success -> {
+                    binding.apply {
+                        success(popularRecyclerView, popularTv, shimmerRvPopular, shimmerTvPopular)
+                    }
                     dateAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
-
+                    binding.apply {
+                        error(popularRecyclerView, popularTv, shimmerRvPopular, shimmerTvPopular)
+                    }
                     Timber.tag("mahdiTest").d("error")
                 }
             }
@@ -81,13 +93,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         homeViewModel.listOfRatingKala.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
-
+                    binding.shimmerRvRate.startShimmer()
                 }
                 is ResultWrapper.Success -> {
+                    binding.apply {
+                        success(rateRecyclerView, rateTv, shimmerRvRate, shimmerTvRate)
+                    }
                     rateAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
-
+                    binding.apply {
+                        error(rateRecyclerView, rateTv, shimmerRvRate, shimmerTvRate)
+                    }
                 }
             }
         }
@@ -102,5 +119,32 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+    }
+
+    fun success(
+        recycleView: RecyclerView,
+        textView: TextView,
+        shimmerFrameLayout: ShimmerFrameLayout,
+        shimmerTextView: TextView
+    ) {
+        shimmerFrameLayout.stopShimmer()
+        recycleView.visibility = View.VISIBLE
+        textView.visibility = View.VISIBLE
+        shimmerFrameLayout.visibility = View.GONE
+        shimmerTextView.visibility = View.GONE
+    }
+
+    fun error(
+        recycleView: RecyclerView,
+        textView: TextView,
+        shimmerFrameLayout: ShimmerFrameLayout,
+        shimmerTextView: TextView
+    ) {
+
+        shimmerFrameLayout.stopShimmer()
+        recycleView.visibility = View.GONE
+        textView.visibility = View.GONE
+        shimmerFrameLayout.visibility = View.GONE
+        shimmerTextView.visibility = View.GONE
     }
 }

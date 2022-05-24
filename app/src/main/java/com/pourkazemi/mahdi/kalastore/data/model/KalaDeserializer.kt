@@ -36,6 +36,6 @@ class KalaDeserializer : JsonDeserializer<List<Kala>> {
                 }
             }
         }
-        return kalas
+        return kalas.toList()
     }
 }
