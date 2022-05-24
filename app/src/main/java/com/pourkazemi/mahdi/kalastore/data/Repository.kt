@@ -14,14 +14,10 @@ class Repository @Inject constructor(
     private val remoteDataSourceImp: RemoteDataSource,
 ) {
     suspend fun getListKala(
-        orderType: String,
-        key: String,
-        secret: String
+        orderType: String
     ) = safeApiCall(dispatcher) {
         remoteDataSourceImp.getListKala(
-            orderType,
-            key,
-            secret
+            orderType
         )
     }
 }

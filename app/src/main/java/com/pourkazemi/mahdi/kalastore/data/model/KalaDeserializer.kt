@@ -3,6 +3,7 @@ package com.pourkazemi.mahdi.kalastore.data.model
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
+import timber.log.Timber
 import java.lang.reflect.Type
 
 class KalaDeserializer : JsonDeserializer<List<Kala>> {
@@ -17,16 +18,21 @@ class KalaDeserializer : JsonDeserializer<List<Kala>> {
             for (kala in jsonArray) {
                 kala.asJsonObject?.let { jsonObject ->
 
-                    val images = jsonObject.getAsJsonArray("images")?.asJsonObject
-                    if (images?.has("src") == true) {
-                        kalas.add(
-                            Kala(
-                                jsonObject.get("id").asInt,
-                                jsonObject.get("name").asString,
-                                images.get("src").asString
-                            )
-                        )
+                    val listOfImage = mutableListOf<String>()
+                    val images = jsonObject.getAsJsonArray("images")
+                    for (image in images) {
+                        Timber.tag("mahdiTest").d("image")
+
+                        listOfImage.add(image?.asJsonObject?.get("src")?.asString ?: "null")
                     }
+
+                    kalas.add(
+                        Kala(
+                            jsonObject.get("id").asInt,
+                            jsonObject.get("name").asString,
+                         listOfImage
+                        )
+                    )
                 }
             }
         }

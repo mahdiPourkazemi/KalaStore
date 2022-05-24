@@ -29,30 +29,28 @@ class ShearedViewModel @Inject constructor(
         MutableStateFlow(ResultWrapper.Loading)
     val listOfDateKala = _listOfDateKala.asStateFlow()
 
+    init {
+        getListProduct()
+    }
+
     fun getListProduct() {
         viewModelScope.launch {
             repository.getListKala(
-                "popularity",
-                KEY,
-                SECRET
+                "popularity"
             ).collect {
                 _listOfPopularKala.emit(it)
             }
         }
         viewModelScope.launch {
             repository.getListKala(
-                "rating",
-                KEY,
-                SECRET
+                "rating"
             ).collect {
                 _listOfRatingKala.emit(it)
             }
         }
         viewModelScope.launch {
             repository.getListKala(
-                "date",
-                KEY,
-                SECRET
+                "date"
             ).collect {
                 _listOfDateKala.emit(it)
             }

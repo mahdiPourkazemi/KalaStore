@@ -6,8 +6,6 @@ import retrofit2.http.Query
 
 interface RemoteDataSource {
     suspend fun getListKala(
-        orderType: String,
-        key: String,
-        secret: String
+        orderType: String
     ): Response<List<Kala>>
 }

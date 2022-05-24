@@ -9,10 +9,8 @@ class RemoteDataSourceImp @Inject constructor(
 ) : RemoteDataSource {
 
     override suspend fun getListKala(
-        orderType: String,
-        key: String,
-        secret: String
+        orderType: String
     ): Response<List<Kala>> {
-        return kalaApi.getListKala(orderType, key, secret)
+        return kalaApi.getListKala(orderType)
     }
 }

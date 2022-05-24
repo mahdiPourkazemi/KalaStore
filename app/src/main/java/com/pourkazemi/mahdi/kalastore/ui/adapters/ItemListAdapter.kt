@@ -1,5 +1,6 @@
 package com.pourkazemi.mahdi.kalastore.ui.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -24,13 +25,16 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
             itemView.setOnClickListener {
                 clickListener.invoke(getItem(bindingAdapterPosition))
                 Timber.tag("mahdiTest").d("itemView clicked")
+                Log.d("mahdiTest","clicked")
             }
         }
 
         fun mBind(kala: Kala) {
+
+            Timber.tag("mahdiTest").d("bind")
             binding.textView.text = kala.name
-            kala.image.let {
-                val imgUri = it.toUri().buildUpon().build()
+            kala.image.let {listOfImage->
+                val imgUri = listOfImage[0].toUri().buildUpon().build()
                 Glide.with(binding.root)
                     .load(imgUri)
                     .apply(

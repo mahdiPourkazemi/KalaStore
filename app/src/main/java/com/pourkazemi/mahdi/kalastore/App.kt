@@ -11,9 +11,9 @@ import timber.log.Timber.Forest.plant
 class App:Application() {
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
+        //if (BuildConfig.DEBUG) {
             plant(Timber.DebugTree())
-        }
+        //}
     }
     companion object{
         const val BASE_URL="https://woocommerce.maktabsharif.ir/wp-json/wc/v3/"
