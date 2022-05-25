@@ -2,8 +2,6 @@ package com.pourkazemi.mahdi.kalastore.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pourkazemi.mahdi.kalastore.App.Companion.KEY
-import com.pourkazemi.mahdi.kalastore.App.Companion.SECRET
 import com.pourkazemi.mahdi.kalastore.data.Repository
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
@@ -56,4 +54,6 @@ class ShearedViewModel @Inject constructor(
             }
         }
     }
+
+
 }

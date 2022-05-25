@@ -29,15 +29,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -58,15 +58,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -88,15 +88,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
-                <include layout="@layout/shimmer_item" />
+                <include layout="@layout/home_shimmer_item" />
 
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -111,7 +111,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/popular_tv"
             app:spanCount="1"
-            tools:listitem="@layout/model_item" />
+            tools:listitem="@layout/home_model_item" />
 
         <androidx.recyclerview.widget.RecyclerView
 
@@ -124,7 +124,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_tv"
             app:spanCount="1"
-            tools:listitem="@layout/model_item" />
+            tools:listitem="@layout/home_model_item" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rate_recyclerView"
@@ -136,7 +136,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rate_tv"
             app:spanCount="1"
-            tools:listitem="@layout/model_item" />
+            tools:listitem="@layout/home_model_item" />
 
         <TextView
             android:id="@+id/popular_tv"

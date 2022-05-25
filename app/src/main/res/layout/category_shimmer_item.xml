@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginTop="4dp"
+    android:background="@color/white"
+    android:layout_height="100dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/category_imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@color/shimmer_color"
+        android:backgroundTint="@color/shimmer_color"
+        android:cropToPadding="true"
+        android:padding="4dp"
+        android:scaleType="centerCrop"
+        android:tint="@color/shimmer_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:shapeAppearance="@style/corneredImageViewRounded"
+        app:strokeColor="@color/cyan"
+        app:strokeWidth="2dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/category_textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:background="@color/shimmer_color"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingTop="8dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/cyan_dark"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/category_imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

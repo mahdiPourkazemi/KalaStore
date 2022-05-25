@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.pourkazemi.mahdi.kalastore.App.Companion.BASE_URL
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
+import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
+import com.pourkazemi.mahdi.kalastore.data.model.KalaCategoryDeserializer
 import com.pourkazemi.mahdi.kalastore.data.model.KalaDeserializer
 import com.pourkazemi.mahdi.kalastore.data.remote.KalaApi
 import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSource
@@ -74,6 +76,9 @@ object NetworkModule {
     @Provides
     fun providesGson(): Gson = GsonBuilder().registerTypeAdapter(
         object : TypeToken<MutableList<Kala>>() {}.type,
-        KalaDeserializer()
+        KalaDeserializer(),
+    ).registerTypeAdapter(
+        object : TypeToken<MutableList<KalaCategory>>() {}.type,
+        KalaCategoryDeserializer(),
     ).create()
 }

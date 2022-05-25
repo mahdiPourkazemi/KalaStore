@@ -111,7 +111,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
+    private fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
         lifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 collect {
@@ -121,7 +121,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    fun success(
+    private fun success(
         recycleView: RecyclerView,
         textView: TextView,
         shimmerFrameLayout: ShimmerFrameLayout,
@@ -134,7 +134,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         shimmerTextView.visibility = View.GONE
     }
 
-    fun error(
+    private fun error(
         recycleView: RecyclerView,
         textView: TextView,
         shimmerFrameLayout: ShimmerFrameLayout,

@@ -10,15 +10,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
-import com.pourkazemi.mahdi.kalastore.databinding.ModelItemBinding
+import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
+import com.pourkazemi.mahdi.kalastore.databinding.CategoryModelItemBinding
 import timber.log.Timber
 
-class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
-    androidx.recyclerview.widget.ListAdapter<Kala, ItemListAdapter.ItemViewHolder>(ItemDiffUtil()) {
+class CategoryItemListAdapter (private val clickListener: (KalaCategory) -> Unit) :
+    androidx.recyclerview.widget.ListAdapter<KalaCategory, CategoryItemListAdapter.CategoryItemViewHolder>(CategoryItemDiffUtil()) {
 
 
-    inner class ItemViewHolder(
-        private val binding: ModelItemBinding
+    inner class CategoryItemViewHolder(
+        private val binding: CategoryModelItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -29,12 +30,12 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
             }
         }
 
-        fun mBind(kala: Kala) {
+        fun mBind(kalaCategory: KalaCategory) {
 
             Timber.tag("mahdiTest").d("bind")
-            binding.textView.text = kala.name
-            kala.image.let {listOfImage->
-                val imgUri = listOfImage[0].toUri().buildUpon().build()
+            binding.categoryTextView.text = kalaCategory.name
+            kalaCategory.image.let { listOfImage->
+                val imgUri = listOfImage.toUri().buildUpon().build()
                 Glide.with(binding.root)
                     .load(imgUri)
                     .apply(
@@ -42,7 +43,7 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
                             .placeholder(R.drawable.loading_animation)
                             .error(R.drawable.ic_broken_image)
                     )
-                    .into(binding.imageView)
+                    .into(binding.categoryImageView)
             }
         }
     }
@@ -50,8 +51,8 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ) = ItemViewHolder(
-        ModelItemBinding.inflate(
+    ) = CategoryItemViewHolder(
+        CategoryModelItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -59,25 +60,25 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
     )
 
     override fun onBindViewHolder(
-        holder: ItemViewHolder,
+        holder: CategoryItemViewHolder,
         position: Int
     ) {
         holder.mBind(getItem(position))
     }
 }
 
-class ItemDiffUtil : DiffUtil.ItemCallback<Kala>() {
+class CategoryItemDiffUtil : DiffUtil.ItemCallback<KalaCategory>() {
 
     override fun areItemsTheSame(
-        oldItem: Kala,
-        newItem: Kala
+        oldItem: KalaCategory,
+        newItem: KalaCategory
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: Kala,
-        newItem: Kala
+        oldItem: KalaCategory,
+        newItem: KalaCategory
     ): Boolean {
         return (oldItem == newItem)
     }
