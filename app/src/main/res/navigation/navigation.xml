@@ -14,12 +14,27 @@
         android:id="@+id/categoryFragment"
         android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/to_specialCategoryFragment"
+            app:destination="@id/specialCategoryFragment"
+            app:popUpTo="@id/categoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/specialCategoryFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.SpecialCategoryFragment"
+        android:label="fragment_special_category"
+        tools:layout="@layout/fragment_special_category" >
+
+        <argument
+            android:name="category_id"
+            app:argType="string" />
+    </fragment>
 
 
 </navigation>
