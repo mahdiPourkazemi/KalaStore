@@ -38,16 +38,15 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         super.onViewCreated(view, savedInstanceState)
 
         val categoryAdapter = CategoryItemListAdapter {
-           categoryViewModel.getSpecialListKala(it.id.toString())
-            //val action= CategoryFragmentDirections.toSpecialCategoryFragment(it.id.toString())
-            findNavController().navigate(R.id.to_specialCategoryFragment)
+            val action = CategoryFragmentDirections.toSpecialCategoryFragment(it.id.toString())
+            findNavController().navigate(action)
             Timber.tag("mahdiTest").d("item ${it.name} clicked")
         }
         binding.apply {
             categoryRv.adapter = categoryAdapter
         }
 
-        categoryViewModel.categoryList.collectIt(viewLifecycleOwner){
+        categoryViewModel.categoryList.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
                     binding.shimmerCategoryRv.startShimmer()
@@ -55,13 +54,13 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                 }
                 is ResultWrapper.Success -> {
                     binding.apply {
-                        success(categoryRv,  shimmerCategoryRv)
+                        success(categoryRv, shimmerCategoryRv)
                     }
                     categoryAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
                     binding.apply {
-                        error(categoryRv,  shimmerCategoryRv)
+                        error(categoryRv, shimmerCategoryRv)
                     }
                     Timber.tag("mahdiTest").d("error")
                 }

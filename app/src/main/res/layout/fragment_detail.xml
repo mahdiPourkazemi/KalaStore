@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.DetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/detail_imageView"
+            style="@style/image"
+            app:layout_constraintBottom_toTopOf="@+id/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="0.6"
+            app:shapeAppearance="@style/corneredImageViewRounded"
+            app:strokeColor="@color/cyan"
+            app:strokeWidth="2dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/cyan_dark"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_imageView"
+            app:layout_constraintVertical_weight="0.1"
+            tools:text="TextView yaaaa" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:lines="4"
+            android:maxLines="4"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/cyan_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:layout_constraintVertical_weight="0.2"
+            tools:text="TextView yaaaa" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingTop="8dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/cyan_dark"
+            android:textColorHighlight="@color/cyan_light"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatButton"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appCompatButton"
+            app:layout_constraintVertical_weight="0.1"
+            tools:text="TextView yaaaa" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:background="@color/cyan_dark"
+            android:text="BUY"
+            android:textColor="@color/cyan_light"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toEndOf="@+id/price_tv"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintVertical_weight="0.1">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

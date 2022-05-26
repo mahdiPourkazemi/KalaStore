@@ -30,7 +30,9 @@ class KalaDeserializer : JsonDeserializer<List<Kala>> {
                         Kala(
                             jsonObject.get("id").asInt,
                             jsonObject.get("name").asString,
-                         listOfImage
+                            jsonObject.get("price").asString,
+                            jsonObject.get("description").asString,
+                            listOfImage
                         )
                     )
                 }

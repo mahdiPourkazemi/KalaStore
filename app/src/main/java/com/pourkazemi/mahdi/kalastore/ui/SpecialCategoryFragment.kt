@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -26,26 +27,27 @@ import timber.log.Timber
 
 class SpecialCategoryFragment : Fragment(R.layout.fragment_special_category) {
     private val binding: FragmentSpecialCategoryBinding by viewBinding(
-        FragmentSpecialCategoryBinding ::bind
+        FragmentSpecialCategoryBinding::bind
     )
 
     private val categoryViewModel: CategoryViewModel by activityViewModels()
-    private val specialNavArgs:SpecialCategoryFragmentArgs by navArgs()
+    private val specialNavArgs: SpecialCategoryFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-// categoryViewModel.getSpecialListKala(specialNavArgs.categoryId)
+        categoryViewModel.getSpecialListKala(specialNavArgs.categoryId)
 
-        val specialAdapter = SpecialKalaAdapter{
+        val specialAdapter = SpecialKalaAdapter {
             //categoryViewModel.getSpecialListKala(it.id.toString())
-            //findNavController().navigate(R.id.to_specialCategoryFragment)
+            val action=DetailFragmentDirections.toDetailFragment(it)
+            findNavController().navigate(action)
             Timber.tag("mahdiTest").d("item ${it.name} clicked")
         }
         binding.apply {
-           specialRv.adapter = specialAdapter
+            specialRv.adapter = specialAdapter
         }
 
-        categoryViewModel.categorySpecialKalaList.collectIt(viewLifecycleOwner){
+        categoryViewModel.categorySpecialKalaList.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
                     binding.shimmerSpecialRv.startShimmer()
@@ -53,13 +55,13 @@ class SpecialCategoryFragment : Fragment(R.layout.fragment_special_category) {
                 }
                 is ResultWrapper.Success -> {
                     binding.apply {
-                        success(specialRv,  shimmerSpecialRv)
+                        success(specialRv, shimmerSpecialRv)
                     }
                     specialAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
                     binding.apply {
-                        error(specialRv,  shimmerSpecialRv)
+                        error(specialRv, shimmerSpecialRv)
                     }
                     Timber.tag("mahdiTest").d("specialError")
                 }

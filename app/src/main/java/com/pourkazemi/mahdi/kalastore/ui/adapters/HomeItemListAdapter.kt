@@ -32,7 +32,7 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
         fun mBind(kala: Kala) {
 
             Timber.tag("mahdiTest").d("bind")
-            binding.textView.text = kala.name
+            binding.homeTv.text = kala.name
             kala.image.let { listOfImage->
                 val imgUri = listOfImage[0].toUri().buildUpon().build()
                 Glide.with(binding.root)
@@ -42,7 +42,7 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
                             .placeholder(R.drawable.loading_animation)
                             .error(R.drawable.ic_broken_image)
                     )
-                    .into(binding.imageView)
+                    .into(binding.homeImageView)
             }
         }
     }

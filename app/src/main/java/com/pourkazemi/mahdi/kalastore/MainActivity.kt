@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val mNavHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(mNavHost.navController)
 
-        setContentView(binding.root)
     }
 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
-
+    <action
+        android:id="@+id/to_detailFragment"
+        app:destination="@id/detailFragment" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.HomeFragment"
@@ -14,7 +16,7 @@
         android:id="@+id/categoryFragment"
         android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/to_specialCategoryFragment"
             app:destination="@id/specialCategoryFragment"
@@ -29,11 +31,20 @@
         android:id="@+id/specialCategoryFragment"
         android:name="com.pourkazemi.mahdi.kalastore.ui.SpecialCategoryFragment"
         android:label="fragment_special_category"
-        tools:layout="@layout/fragment_special_category" >
+        tools:layout="@layout/fragment_special_category">
 
         <argument
             android:name="category_id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="kala"
+            app:argType="com.pourkazemi.mahdi.kalastore.data.model.Kala" />
     </fragment>
 
 

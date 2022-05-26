@@ -3,21 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:layout_marginTop="4dp"
-    android:background="@color/white"
-    android:layout_height="100dp">
+    android:background="@color/white">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/category_imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:background="@color/shimmer_color"
-        android:backgroundTint="@color/shimmer_color"
-        android:cropToPadding="true"
-        android:padding="4dp"
-        android:scaleType="centerCrop"
-        android:tint="@color/shimmer_color"
+        android:id="@+id/shimmer_category_imageView"
+        style="@style/shimmer_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +23,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/category_textView"
+        android:id="@+id/shimmer_category_textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
@@ -44,7 +36,7 @@
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/category_imageView"
+        app:layout_constraintStart_toEndOf="@+id/shimmer_category_imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

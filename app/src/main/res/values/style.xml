@@ -8,7 +8,7 @@
 
     <style name="size_of_rv_item">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">192dp</item>
+        <item name="android:layout_height">248dp</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:visibility">gone</item>
     </style>
@@ -17,4 +17,31 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">192dp</item>
     </style>
+    <style name="image">
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:cropToPadding">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="shimmer_image">
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:cropToPadding">true</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="background">@color/shimmer_color</item>
+        <item name="backgroundTint">@color/shimmer_color</item>
+        <item name="backgroundColor">@color/shimmer_color</item>
+        <item name="tint">@color/shimmer_color</item>
+    </style>
+<!--    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.AppCompat</item>
+        <item name="windowSplashScreenBackground">@color/cyan</item>
+    </style>-->
 </resources>
