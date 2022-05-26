@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layout_marginTop="4dp"
-    android:background="@color/white">
+    android:layout_marginTop="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shimmer_category_imageView"
         style="@style/shimmer_image"
+        android:backgroundTint="@color/shimmer_color"
+        android:background="@color/shimmer_color"
+        android:tint="@color/shimmer_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"

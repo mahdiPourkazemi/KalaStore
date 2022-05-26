@@ -6,6 +6,7 @@ import com.pourkazemi.mahdi.kalastore.data.Repository
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -15,6 +16,9 @@ import javax.inject.Inject
 class ShearedViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
+   private val _splashScreen:MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val splashScreen=_splashScreen.asStateFlow()
+
     private val _listOfPopularKala: MutableStateFlow<ResultWrapper<List<Kala>>> =
         MutableStateFlow(ResultWrapper.Loading)
     val listOfPopularKala = _listOfPopularKala.asStateFlow()
@@ -29,6 +33,10 @@ class ShearedViewModel @Inject constructor(
 
     init {
         getListProduct()
+        viewModelScope.launch {
+            delay(2000)
+            _splashScreen.emit(false)
+        }
     }
 
     fun getListProduct() {
