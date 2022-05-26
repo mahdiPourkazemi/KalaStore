@@ -37,12 +37,8 @@ class SpecialCategoryFragment : Fragment(R.layout.fragment_special_category) {
 
         categoryViewModel.getSpecialListKala(specialNavArgs.categoryId)
 
-        val specialAdapter = SpecialKalaAdapter {
-            //categoryViewModel.getSpecialListKala(it.id.toString())
-            val action=DetailFragmentDirections.toDetailFragment(it)
-            findNavController().navigate(action)
-            Timber.tag("mahdiTest").d("item ${it.name} clicked")
-        }
+        val specialAdapter = SpecialKalaAdapter()
+
         binding.apply {
             specialRv.adapter = specialAdapter
         }

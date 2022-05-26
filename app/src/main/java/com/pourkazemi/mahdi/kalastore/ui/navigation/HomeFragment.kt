@@ -34,15 +34,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val popularAdapter = ItemListAdapter {
-            Timber.tag("mahdiTest").d("item ${it.name} clicked")
-        }
-        val dateAdapter = ItemListAdapter {
-            Timber.tag("mahdiTest").d("item ${it.name} clicked")
-        }
-        val rateAdapter = ItemListAdapter {
-            Timber.tag("mahdiTest").d("item ${it.name} clicked")
-        }
+        val popularAdapter = ItemListAdapter()
+        val dateAdapter = ItemListAdapter()
+        val rateAdapter = ItemListAdapter()
+
         binding.apply {
             popularRecyclerView.adapter = popularAdapter
             dateRecyclerView.adapter = dateAdapter

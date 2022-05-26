@@ -4,6 +4,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,10 +14,13 @@ import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
 import com.pourkazemi.mahdi.kalastore.databinding.CategoryModelItemBinding
+import com.pourkazemi.mahdi.kalastore.ui.navigation.CategoryFragmentDirections
 import timber.log.Timber
 
-class CategoryItemListAdapter (private val clickListener: (KalaCategory) -> Unit) :
-    androidx.recyclerview.widget.ListAdapter<KalaCategory, CategoryItemListAdapter.CategoryItemViewHolder>(CategoryItemDiffUtil()) {
+class CategoryItemListAdapter :
+    androidx.recyclerview.widget.ListAdapter<KalaCategory, CategoryItemListAdapter.CategoryItemViewHolder>(
+        CategoryItemDiffUtil()
+    ) {
 
 
     inner class CategoryItemViewHolder(
@@ -24,9 +29,10 @@ class CategoryItemListAdapter (private val clickListener: (KalaCategory) -> Unit
 
         init {
             itemView.setOnClickListener {
-                clickListener.invoke(getItem(bindingAdapterPosition))
-                Timber.tag("mahdiTest").d("itemView clicked")
-                Log.d("mahdiTest","clicked")
+                val action = CategoryFragmentDirections.toSpecialCategoryFragment(
+                    getItem(bindingAdapterPosition).id.toString()
+                )
+                itemView.findNavController().navigate(action)
             }
         }
 
@@ -34,7 +40,7 @@ class CategoryItemListAdapter (private val clickListener: (KalaCategory) -> Unit
 
             Timber.tag("mahdiTest").d("bind")
             binding.categoryTextView.text = kalaCategory.name
-            kalaCategory.image.let { listOfImage->
+            kalaCategory.image.let { listOfImage ->
                 val imgUri = listOfImage.toUri().buildUpon().build()
                 Glide.with(binding.root)
                     .load(imgUri)

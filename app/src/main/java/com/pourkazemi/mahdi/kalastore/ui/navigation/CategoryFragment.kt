@@ -2,16 +2,12 @@ package com.pourkazemi.mahdi.kalastore.ui.navigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.pourkazemi.mahdi.kalastore.R
@@ -37,11 +33,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryAdapter = CategoryItemListAdapter {
-            val action = CategoryFragmentDirections.toSpecialCategoryFragment(it.id.toString())
-            findNavController().navigate(action)
-            Timber.tag("mahdiTest").d("item ${it.name} clicked")
-        }
+        val categoryAdapter = CategoryItemListAdapter()
+
         binding.apply {
             categoryRv.adapter = categoryAdapter
         }

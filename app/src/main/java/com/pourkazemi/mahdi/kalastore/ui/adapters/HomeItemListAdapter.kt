@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -11,9 +12,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.databinding.HomeModelItemBinding
+import com.pourkazemi.mahdi.kalastore.ui.DetailFragmentDirections
 import timber.log.Timber
 
-class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
+class ItemListAdapter :
     androidx.recyclerview.widget.ListAdapter<Kala, ItemListAdapter.ItemViewHolder>(ItemDiffUtil()) {
 
 
@@ -23,9 +25,8 @@ class ItemListAdapter(private val clickListener: (Kala) -> Unit) :
 
         init {
             itemView.setOnClickListener {
-                clickListener.invoke(getItem(bindingAdapterPosition))
-                Timber.tag("mahdiTest").d("itemView clicked")
-                Log.d("mahdiTest","clicked")
+                val action= DetailFragmentDirections.toDetailFragment( getItem(bindingAdapterPosition) )
+                itemView.findNavController().navigate(action)
             }
         }
 
