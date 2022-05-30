@@ -1,4 +1,4 @@
-package com.pourkazemi.mahdi.kalastore.ui.viewmodels
+package com.pourkazemi.mahdi.kalastore.ui.category
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,7 +28,7 @@ class CategoryViewModel @Inject constructor(
         getListKalaCategory()
     }
 
-   private fun getListKalaCategory() {
+   fun getListKalaCategory() {
         viewModelScope.launch {
             repository.getListKalaCategory().collect {
                 _categoryList.emit(it)

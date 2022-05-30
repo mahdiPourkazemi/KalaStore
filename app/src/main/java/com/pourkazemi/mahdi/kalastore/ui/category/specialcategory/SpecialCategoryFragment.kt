@@ -1,4 +1,4 @@
-package com.pourkazemi.mahdi.kalastore.ui.navigation
+package com.pourkazemi.mahdi.kalastore.ui.category.specialcategory
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,60 +8,59 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.pourkazemi.mahdi.kalastore.R
-import com.pourkazemi.mahdi.kalastore.databinding.FragmentCategoryBinding
-import com.pourkazemi.mahdi.kalastore.ui.SpecialCategoryFragment
-import com.pourkazemi.mahdi.kalastore.ui.adapters.CategoryItemListAdapter
-import com.pourkazemi.mahdi.kalastore.ui.viewmodels.CategoryViewModel
+import com.pourkazemi.mahdi.kalastore.databinding.FragmentSpecialCategoryBinding
+import com.pourkazemi.mahdi.kalastore.ui.category.CategoryViewModel
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@AndroidEntryPoint
-class CategoryFragment : Fragment(R.layout.fragment_category) {
-    private val binding: FragmentCategoryBinding by viewBinding(
-        FragmentCategoryBinding::bind
+
+class SpecialCategoryFragment : Fragment(R.layout.fragment_special_category) {
+    private val binding: FragmentSpecialCategoryBinding by viewBinding(
+        FragmentSpecialCategoryBinding::bind
     )
 
     private val categoryViewModel: CategoryViewModel by activityViewModels()
-
+    private val specialNavArgs: SpecialCategoryFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryAdapter = CategoryItemListAdapter()
+        categoryViewModel.getSpecialListKala(specialNavArgs.categoryId)
+
+        val specialAdapter = SpecialKalaAdapter()
 
         binding.apply {
-            categoryRv.adapter = categoryAdapter
+            specialRv.adapter = specialAdapter
         }
 
-        categoryViewModel.categoryList.collectIt(viewLifecycleOwner) {
+        categoryViewModel.categorySpecialKalaList.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
-                    binding.shimmerCategoryRv.startShimmer()
-                    Timber.tag("mahdiTest").d("error")
+                    binding.shimmerSpecialRv.startShimmer()
+                    Timber.tag("mahdiTest").d("loadingSpecialError")
                 }
                 is ResultWrapper.Success -> {
                     binding.apply {
-                        success(categoryRv, shimmerCategoryRv)
+                        success(specialRv, shimmerSpecialRv)
                     }
-                    categoryAdapter.submitList(it.value)
+                    specialAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
                     binding.apply {
-                        error(categoryRv, shimmerCategoryRv)
+                        error(specialRv, shimmerSpecialRv)
                     }
-                    Timber.tag("mahdiTest").d("error")
+                    Timber.tag("mahdiTest").d("specialError")
                 }
             }
+
         }
-
     }
-
 
     private fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
         lifecycleOwner.lifecycleScope.launch {

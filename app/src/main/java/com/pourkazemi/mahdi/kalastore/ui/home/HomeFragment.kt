@@ -1,9 +1,10 @@
-package com.pourkazemi.mahdi.kalastore.ui.navigation
+package com.pourkazemi.mahdi.kalastore.ui.home
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -14,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentHomeBinding
-import com.pourkazemi.mahdi.kalastore.ui.adapters.ItemListAdapter
-import com.pourkazemi.mahdi.kalastore.ui.viewmodels.ShearedViewModel
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint

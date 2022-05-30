@@ -1,11 +1,9 @@
-package com.pourkazemi.mahdi.kalastore.ui.adapters
+package com.pourkazemi.mahdi.kalastore.ui.category.specialcategory
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,7 +15,9 @@ import com.pourkazemi.mahdi.kalastore.ui.DetailFragmentDirections
 import timber.log.Timber
 
 class SpecialKalaAdapter :
-    androidx.recyclerview.widget.ListAdapter<Kala, SpecialKalaAdapter.SpecialKalaItemViewHolder>(kalaItemDiffUtil()) {
+    androidx.recyclerview.widget.ListAdapter<Kala, SpecialKalaAdapter.SpecialKalaItemViewHolder>(
+        kalaItemDiffUtil()
+    ) {
 
 
     inner class SpecialKalaItemViewHolder(

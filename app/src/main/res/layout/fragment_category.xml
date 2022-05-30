@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/cyan_light"
-    tools:context=".ui.navigation.CategoryFragment">
+    tools:context=".ui.category.CategoryFragment">
 
     <com.facebook.shimmer.ShimmerFrameLayout
 

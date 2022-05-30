@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -28,7 +29,7 @@ suspend inline fun <T> safeApiCall(
 ) = flow {
     emit(ResultWrapper.Loading)
     try {
-        val response = apiCall.invoke() //() after name or .invoke()
+        val response = withContext(dispatcher) { apiCall.invoke() }
         val responseBody = response.body()
         if (response.isSuccessful && responseBody != null) {
             emit(ResultWrapper.Success(responseBody))
@@ -50,9 +51,7 @@ suspend inline fun <T> safeApiCall(
         emit(ResultWrapper.Error(e.message))
     } catch (e: Throwable) {
         emit(ResultWrapper.Error(e.message))
-    }/* finally {
-        emit(ResultWrapper.Error("finally you .."))
-    }*/
+    }
 }
 
 private fun logger(msg: String) {

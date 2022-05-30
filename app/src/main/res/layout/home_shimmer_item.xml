@@ -8,7 +8,6 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shimmer_home_imageView"
         style="@style/shimmer_image"
-        android:layout_width="0dp"
         android:background="@color/shimmer_color"
         android:backgroundTint="@color/shimmer_color"
         android:tint="@color/shimmer_color"

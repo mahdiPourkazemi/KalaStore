@@ -9,12 +9,12 @@
         app:destination="@id/detailFragment" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.HomeFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.CategoryFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.category.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category">
         <action
@@ -24,12 +24,12 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.pourkazemi.mahdi.kalastore.ui.navigation.AccountFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/specialCategoryFragment"
-        android:name="com.pourkazemi.mahdi.kalastore.ui.SpecialCategoryFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.category.specialcategory.SpecialCategoryFragment"
         android:label="fragment_special_category"
         tools:layout="@layout/fragment_special_category">
 

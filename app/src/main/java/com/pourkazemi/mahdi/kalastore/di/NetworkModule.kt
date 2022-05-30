@@ -1,5 +1,6 @@
 package com.pourkazemi.mahdi.kalastore.di
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -11,9 +12,11 @@ import com.pourkazemi.mahdi.kalastore.data.model.KalaDeserializer
 import com.pourkazemi.mahdi.kalastore.data.remote.KalaApi
 import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSource
 import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSourceImp
+import com.pourkazemi.mahdi.kalastore.utils.NetworkStatusTracker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -56,8 +59,8 @@ object NetworkModule {
     fun provideOkHttpClient(logging: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
-            .connectTimeout(15, TimeUnit.SECONDS) // connect timeout
-            .readTimeout(15, TimeUnit.SECONDS)
+/*            .connectTimeout(15, TimeUnit.SECONDS) // connect timeout
+            .readTimeout(15, TimeUnit.SECONDS)*/
             .build()
     }
 
@@ -81,4 +84,10 @@ object NetworkModule {
         object : TypeToken<MutableList<KalaCategory>>() {}.type,
         KalaCategoryDeserializer(),
     ).create()
+
+    @Provides
+    @Singleton
+    fun provideNetworkState(
+        @ApplicationContext context: Context
+    ) = NetworkStatusTracker(context)
 }

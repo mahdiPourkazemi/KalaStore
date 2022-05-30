@@ -1,20 +1,16 @@
-package com.pourkazemi.mahdi.kalastore.ui.adapters
+package com.pourkazemi.mahdi.kalastore.ui.category
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.pourkazemi.mahdi.kalastore.R
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
 import com.pourkazemi.mahdi.kalastore.databinding.CategoryModelItemBinding
-import com.pourkazemi.mahdi.kalastore.ui.navigation.CategoryFragmentDirections
 import timber.log.Timber
 
 class CategoryItemListAdapter :

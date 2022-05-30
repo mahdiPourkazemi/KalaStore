@@ -1,6 +1,5 @@
-package com.pourkazemi.mahdi.kalastore.ui.adapters
+package com.pourkazemi.mahdi.kalastore.ui.home
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
