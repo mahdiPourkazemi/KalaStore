@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="shimmer_color">#B3B3B3</color>
-    <color name="cyan">#00acc1</color>
-    <color name="cyan_dark">#007c91</color>
-    <color name="cyan_light">#5ddef4</color>
+    <color name="red">#d50000</color>
+    <color name="red_dark">#9b0000</color>
+    <color name="red_light">#ff5131</color>
 </resources>

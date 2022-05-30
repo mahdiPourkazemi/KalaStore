@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight=".8"
         app:shapeAppearance="@style/corneredImageViewRounded"
-        app:strokeColor="@color/cyan"
+        app:strokeColor="@color/red"
         app:strokeWidth="2dp"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -29,7 +29,7 @@
         android:layout_margin="4dp"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/cyan_dark"
+        android:textColor="@color/red_dark"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

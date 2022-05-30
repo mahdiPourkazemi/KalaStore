@@ -8,6 +8,7 @@ import android.net.NetworkRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toolbar
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
@@ -39,9 +40,15 @@ class MainActivity : AppCompatActivity() {
         splashScreen.setKeepOnScreenCondition {
             activityViewModel.splashScreen.value
         }
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.toolbar.ShapeableImageView.setOnClickListener {
+
+        }
+
         val mNavHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(mNavHost.navController)
@@ -93,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-private fun visibilityBottomNavigation(visible: Boolean) {
+    private fun visibilityBottomNavigation(visible: Boolean) {
     if (visible) binding.bottomNavigation.visibility = View.VISIBLE
     else binding.bottomNavigation.visibility = View.GONE
 }
