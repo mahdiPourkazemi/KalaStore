@@ -30,6 +30,13 @@ interface KalaApi {
         @Query("consumer_secret") secret: String = SECRET
     ): Response<List<Kala>>
 
+
+    @GET("products")
+    suspend fun searchListKala(
+        @Query("search") search: String,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET
+    ): Response<List<Kala>>
 /*    @GET("products/{id}")
     suspend fun getProduct(
         @Path("id") id:Int,

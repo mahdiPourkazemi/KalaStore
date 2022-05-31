@@ -24,4 +24,8 @@ class RemoteDataSourceImp @Inject constructor(
     ): Response<List<Kala>> {
         return kalaApi.getSpecialCategoryListKala(category)
     }
+
+    override suspend fun searchListKala(search: String): Response<List<Kala>> {
+       return kalaApi.searchListKala(search)
+    }
 }
