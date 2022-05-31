@@ -23,7 +23,7 @@ class NetworkStatusTracker @Inject constructor(context: Context) {
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    val validNetworkConnections= mutableSetOf<Network>()
+    val validNetworkConnections= ArrayList<Network>()
 
     val networkStatus = callbackFlow<NetworkStatus> {
             val networkStatusCallback = object : ConnectivityManager.NetworkCallback() {

@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-        <include layout="@layout/custom_actionbar"
+    <include
         android:id="@+id/toolbar"
+        layout="@layout/custom_actionbar"
         android:layout_width="match_parent"
         android:layout_height="64dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_container_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container_view"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"

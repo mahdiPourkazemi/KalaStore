@@ -1,4 +1,4 @@
-package com.pourkazemi.mahdi.kalastore.ui
+package com.pourkazemi.mahdi.kalastore.ui.account
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,5 +17,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     private val binding: FragmentAccountBinding by viewBinding(
         FragmentAccountBinding::bind
     )
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }

@@ -1,4 +1,4 @@
-package com.pourkazemi.mahdi.kalastore.ui
+package com.pourkazemi.mahdi.kalastore.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

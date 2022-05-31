@@ -1,31 +1,27 @@
 package com.pourkazemi.mahdi.kalastore
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkRequest
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toolbar
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.pourkazemi.mahdi.kalastore.databinding.ActivityMainBinding
 import com.pourkazemi.mahdi.kalastore.ui.category.CategoryViewModel
 import com.pourkazemi.mahdi.kalastore.ui.home.ShearedViewModel
+import com.pourkazemi.mahdi.kalastore.ui.search.SearchFragment
 import com.pourkazemi.mahdi.kalastore.utils.NetworkStatus
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import kotlin.time.measureTimedValue
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -45,13 +41,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.ShapeableImageView.setOnClickListener {
-
-        }
-
         val mNavHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(mNavHost.navController)
+
+
+        binding.toolbar.ShapeableImageView.setOnClickListener {
+            mNavHost.navController.navigate(R.id.searchFragment)
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -76,34 +73,24 @@ class MainActivity : AppCompatActivity() {
                 R.id.accountFragment -> visibilityBottomNavigation(true)
                 R.id.homeFragment -> visibilityBottomNavigation(true)
                 R.id.categoryFragment -> visibilityBottomNavigation(true)
+                R.id.cartFragment-> visibilityBottomNavigation(true)
+                R.id.searchFragment -> {
+                    visibilityBottomNavigation(false)
+                    binding.toolbar.ShapeableImageView.visibility = View.GONE
+                }
                 else -> visibilityBottomNavigation(false)
             }
         }
-
-
-/*        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        connectivityManager.
-        val networkStatusCallback = object : ConnectivityManager.NetworkCallback() {
-            override fun onUnavailable() {
-            }
-
-            override fun onAvailable(network: Network) {
-            }
-
-            override fun onLost(network: Network) {
+    }
+        private fun visibilityBottomNavigation(visible: Boolean) {
+            if (visible){
+                binding.toolbar.ShapeableImageView.visibility = View.VISIBLE
+                binding.bottomNavigation.visibility = View.VISIBLE
+            } else{
+                binding.bottomNavigation.visibility = View.GONE
+                binding.toolbar.ShapeableImageView.visibility = View.VISIBLE
             }
         }
-        val request = NetworkRequest.Builder()
-            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            .build()
-        connectivityManager.registerNetworkCallback(request, networkStatusCallback)*/
-
-}
-
-    private fun visibilityBottomNavigation(visible: Boolean) {
-    if (visible) binding.bottomNavigation.visibility = View.VISIBLE
-    else binding.bottomNavigation.visibility = View.GONE
-}
-}
+    }
 
 

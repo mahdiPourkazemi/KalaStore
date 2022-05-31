@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.pourkazemi.mahdi.kalastore.ui.AccountFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
@@ -39,13 +39,23 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.pourkazemi.mahdi.kalastore.ui.DetailFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="kala"
             app:argType="com.pourkazemi.mahdi.kalastore.data.model.Kala" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 
 
 </navigation>

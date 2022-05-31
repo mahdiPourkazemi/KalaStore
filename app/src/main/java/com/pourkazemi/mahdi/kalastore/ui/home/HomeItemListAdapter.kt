@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.databinding.HomeModelItemBinding
-import com.pourkazemi.mahdi.kalastore.ui.DetailFragmentDirections
+import com.pourkazemi.mahdi.kalastore.ui.detail.DetailFragmentDirections
 import timber.log.Timber
 
 class ItemListAdapter :
