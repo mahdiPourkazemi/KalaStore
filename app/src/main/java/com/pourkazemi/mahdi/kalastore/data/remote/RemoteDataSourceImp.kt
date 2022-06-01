@@ -1,5 +1,6 @@
 package com.pourkazemi.mahdi.kalastore.data.remote
 
+import com.pourkazemi.mahdi.kalastore.data.model.Customer
 import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import retrofit2.Response
@@ -31,5 +32,9 @@ class RemoteDataSourceImp @Inject constructor(
 
     override suspend fun getSpecialSellProduct(): Response<List<Kala>> {
         return kalaApi.getSpecialSellProduct()
+    }
+
+    override suspend fun createCustomer(customer: Customer): Response<Customer> {
+       return kalaApi.createCustomer(customer)
     }
 }
