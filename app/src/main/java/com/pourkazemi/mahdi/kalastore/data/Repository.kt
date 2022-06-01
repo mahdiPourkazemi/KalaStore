@@ -34,4 +34,7 @@ class Repository @Inject constructor(
        remoteDataSourceImp.searchListKala(search)
     }
 
+    suspend fun getSpecialSellProduct()= safeApiCall(dispatcher){
+        remoteDataSourceImp.getSpecialSellProduct()
+    }
 }

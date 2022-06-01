@@ -20,4 +20,6 @@ interface RemoteDataSource {
     suspend fun searchListKala(
         search: String
     ): Response<List<Kala>>
+
+    suspend fun getSpecialSellProduct(): Response<List<Kala>>
 }

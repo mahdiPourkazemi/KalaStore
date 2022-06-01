@@ -9,7 +9,9 @@ import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentAccountBinding
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentCartBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private val binding: FragmentCartBinding by viewBinding(

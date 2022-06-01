@@ -22,6 +22,9 @@ class ShearedViewModel @Inject constructor(
     private val repository: Repository,
     private val networkStatusTracker: NetworkStatusTracker
 ) : ViewModel() {
+    private val _listOfSpecialSell: MutableStateFlow<ResultWrapper<List<Kala>>> =
+        MutableStateFlow(ResultWrapper.Loading)
+    val listOfSpecialSell = _listOfSpecialSell.asStateFlow()
 
     private val _networkState: MutableStateFlow<NetworkStatus> =
         MutableStateFlow(NetworkStatus.Available)
@@ -56,6 +59,11 @@ class ShearedViewModel @Inject constructor(
     }
 
     fun getListProduct() {
+        viewModelScope.launch {
+            repository.getSpecialSellProduct().collect{
+               _listOfSpecialSell.emit(it)
+            }
+        }
         viewModelScope.launch {
             repository.getListKala(
                 "popularity"

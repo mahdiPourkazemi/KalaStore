@@ -10,8 +10,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentDetailBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val binding: FragmentDetailBinding by viewBinding(
         FragmentDetailBinding::bind

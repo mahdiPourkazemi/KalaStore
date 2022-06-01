@@ -16,11 +16,12 @@ import com.pourkazemi.mahdi.kalastore.databinding.FragmentSpecialCategoryBinding
 import com.pourkazemi.mahdi.kalastore.ui.category.CategoryViewModel
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
+@AndroidEntryPoint
 class SpecialCategoryFragment : Fragment(R.layout.fragment_special_category) {
     private val binding: FragmentSpecialCategoryBinding by viewBinding(
         FragmentSpecialCategoryBinding::bind

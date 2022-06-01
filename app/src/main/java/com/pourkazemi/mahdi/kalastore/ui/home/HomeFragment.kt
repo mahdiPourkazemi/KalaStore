@@ -36,11 +36,32 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val popularAdapter = ItemListAdapter()
         val dateAdapter = ItemListAdapter()
         val rateAdapter = ItemListAdapter()
+        val sliderAdapter = Slider()
 
         binding.apply {
             popularRecyclerView.adapter = popularAdapter
             dateRecyclerView.adapter = dateAdapter
             rateRecyclerView.adapter = rateAdapter
+            viewPager.adapter = sliderAdapter
+        }
+        homeViewModel.listOfSpecialSell.collectIt(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                    binding.shimmerSlider.startShimmer()
+                    Timber.tag("mahdiTest").d("error")
+                }
+                is ResultWrapper.Success -> {
+                   binding.shimmerSlider.stopShimmer()
+                    binding.shimmerSlider.visibility=View.GONE
+                    binding.viewPager.visibility=View.VISIBLE
+                    sliderAdapter.submitList(it.value[0].image)
+                }
+                is ResultWrapper.Error -> {
+                    binding.shimmerSlider.stopShimmer()
+                    binding.shimmerSlider.visibility=View.GONE
+                    Timber.tag("mahdiTest").d("error")
+                }
+            }
         }
 
         homeViewModel.listOfDateKala.collectIt(viewLifecycleOwner) {

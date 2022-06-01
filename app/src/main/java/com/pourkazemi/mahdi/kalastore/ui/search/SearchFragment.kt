@@ -16,11 +16,12 @@ import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentSearchBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
+@AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search) {
     private val binding: FragmentSearchBinding by viewBinding(FragmentSearchBinding::bind)
     private val searchViewModel: SearchViewModel by activityViewModels()
