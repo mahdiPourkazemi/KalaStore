@@ -9,22 +9,46 @@ import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AccountViewModel @Inject constructor(
     private val repository: Repository
-):ViewModel(){
+) : ViewModel() {
+
+    private val _dataBaseCustomer: MutableStateFlow<List<Customer>> =
+        MutableStateFlow(listOf())
+    val dataBaseCustomer = _dataBaseCustomer.asStateFlow()
+
     private val _createdUser: MutableStateFlow<ResultWrapper<Customer>> =
         MutableStateFlow(ResultWrapper.Loading)
     val createdUser = _createdUser.asStateFlow()
 
-    fun createCustomer(customer: Customer){
+    init {
+        getAllCustomer()
+    }
+
+    fun createCustomer(customer: Customer) {
         viewModelScope.launch {
-           repository.createCustomer(customer).collect{
-               _createdUser.emit(it)
-           }
+            repository.createCustomer(customer).collect {
+                _createdUser.emit(it)
+            }
+        }
+    }
+
+    fun insertCustomer(customer: Customer) {
+        viewModelScope.launch {
+            repository.insertCustomer(customer)
+        }
+    }
+
+    private fun getAllCustomer() {
+        viewModelScope.launch {
+            repository.getAllCustomer().collect {
+                _dataBaseCustomer.emit(it)
+            }
         }
     }
 }

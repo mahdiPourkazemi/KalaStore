@@ -8,6 +8,7 @@ import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSource
 import com.pourkazemi.mahdi.kalastore.di.DispatchersModule
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.safeApiCall
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -45,5 +46,14 @@ class Repository @Inject constructor(
 
     suspend fun createCustomer(customer: Customer) = safeApiCall(dispatcher) {
         remoteDataSourceImp.createCustomer(customer)
+    }
+    suspend fun insertCustomer(customer: Customer){
+       localDataSourceImp.insertCustomer(customer)
+    }
+    suspend fun deleteCustomer(customer: Customer){
+        localDataSourceImp.deleteCustomer(customer)
+    }
+    fun getAllCustomer():Flow<List<Customer>>{
+        return localDataSourceImp.getAllCustomer()
     }
 }

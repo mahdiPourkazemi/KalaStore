@@ -19,7 +19,7 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun getDatabase(
+    fun provideDatabase(
         @ApplicationContext context: Context
     ): CustomerDataBase = Room.databaseBuilder(
         context.applicationContext,
@@ -29,7 +29,7 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun personDao(
+    fun provideCustomerDao(
         customerDataBase: CustomerDataBase
     ): CustomerDao = customerDataBase.customerDao()
 

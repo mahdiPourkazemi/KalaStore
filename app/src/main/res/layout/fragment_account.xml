@@ -7,207 +7,293 @@
     tools:context=".ui.account.AccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/start_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".2" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/register_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/end_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".8" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".2" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:hint="first name"
-            app:boxCornerRadiusBottomEnd="4dp"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeWidth="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/lastName"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:startIconContentDescription="like"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24"
-            app:startIconTint="@color/red">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".8" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="first name"
+                app:boxCornerRadiusBottomEnd="4dp"
+                app:boxStrokeColor="@color/red"
+                app:boxStrokeWidth="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/lastName"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:startIconContentDescription="like"
+                app:startIconDrawable="@drawable/ic_baseline_favorite_24"
+                app:startIconTint="@color/red">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lastName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:hint="last name"
-            app:boxCornerRadiusBottomEnd="4dp"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeWidth="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/userName"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:startIconContentDescription="like"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24"
-            app:startIconTint="@color/red">
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/lastNameEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/userName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:hint="user name"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeWidth="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/email"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/lastName"
-            app:startIconContentDescription="like"
-            app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
-            app:startIconTint="@color/red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/userNameEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:hint="email"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeWidth="4dp"
-            app:endIconMode="custom"
-            app:layout_constraintBottom_toTopOf="@+id/password"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            app:startIconContentDescription="email"
-            app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
-            app:startIconTint="@color/red">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="last name"
+                app:boxCornerRadiusBottomEnd="4dp"
+                app:boxStrokeColor="@color/red"
+                app:boxStrokeWidth="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/userName"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:startIconContentDescription="like"
+                app:startIconDrawable="@drawable/ic_baseline_favorite_24"
+                app:startIconTint="@color/red">
 
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lastNameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:hint="password"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeWidth="4dp"
-            app:endIconMode="password_toggle"
-            app:errorIconTintMode="multiply"
-            app:layout_constraintBottom_toTopOf="@+id/rePassword"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/email"
-            app:startIconContentDescription="password"
-            app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
-            app:startIconTint="@color/red">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="user name"
+                app:boxStrokeColor="@color/red"
+                app:boxStrokeWidth="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/email"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/lastName"
+                app:startIconContentDescription="like"
+                app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
+                app:startIconTint="@color/red">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/userNameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/rePassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:hint="re type password"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeWidth="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/register"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:startIconContentDescription="like"
-            app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
-            app:startIconTint="@color/red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/rePasswordEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="email"
+                app:boxStrokeColor="@color/red"
+                app:boxStrokeWidth="4dp"
+                app:endIconMode="custom"
+                app:layout_constraintBottom_toTopOf="@+id/password"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/userName"
+                app:startIconContentDescription="email"
+                app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
+                app:startIconTint="@color/red">
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="Register"
-            android:textAlignment="center"
-            app:cornerRadius="32dp"
-            app:elevation="4dp"
-            app:icon="@drawable/ic_baseline_person_add_alt_1_24"
-            app:iconGravity="start"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/rePassword"
-            app:rippleColor="@color/red"
-            app:startIconTint="@color/white" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
 
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="password"
+                app:boxStrokeColor="@color/red"
+                app:boxStrokeWidth="4dp"
+                app:endIconMode="password_toggle"
+                app:errorIconTintMode="multiply"
+                app:layout_constraintBottom_toTopOf="@+id/rePassword"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/email"
+                app:startIconContentDescription="password"
+                app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
+                app:startIconTint="@color/red">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rePassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="re type password"
+                app:boxStrokeColor="@color/red"
+                app:boxStrokeWidth="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/register"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/password"
+                app:startIconContentDescription="like"
+                app:startIconDrawable="@drawable/ic_baseline_add_circle_24"
+                app:startIconTint="@color/red">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rePasswordEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="Register"
+                android:textAlignment="center"
+                app:cornerRadius="32dp"
+                app:elevation="4dp"
+                app:icon="@drawable/ic_baseline_person_add_alt_1_24"
+                app:iconGravity="start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/rePassword"
+                app:rippleColor="@color/red"
+                app:startIconTint="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/available_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/start_guideline_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".2" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".8" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/firstName_database"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/red_dark"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@id/lastName_database"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
+                app:layout_constraintStart_toStartOf="@id/start_guideline_d"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="first name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lastName_database"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/red_dark"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@id/userName_database"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
+                app:layout_constraintStart_toStartOf="@id/start_guideline_d"
+                app:layout_constraintTop_toBottomOf="@id/firstName_database"
+                tools:text="last name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/userName_database"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/red_dark"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@id/email_database"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
+                app:layout_constraintStart_toStartOf="@id/start_guideline_d"
+                app:layout_constraintTop_toBottomOf="@id/lastName_database"
+                tools:text="user name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/email_database"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/red_dark"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
+                app:layout_constraintStart_toStartOf="@id/start_guideline_d"
+                app:layout_constraintTop_toBottomOf="@id/userName_database"
+                tools:text="email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

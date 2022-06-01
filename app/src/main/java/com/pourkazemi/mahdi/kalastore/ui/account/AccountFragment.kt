@@ -38,9 +38,13 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     userNameEdit.text.isNullOrBlank() &&
                     (passwordEdit.text == rePasswordEdit.text && passwordEdit.text.isNullOrBlank())
                 ) {
-                    accountViewModel.createCustomer(Customer("0",emailEdit.text.toString(),
-                    nameEdit.text.toString(),lastNameEdit.text.toString(),
-                    passwordEdit.text.toString()))
+                    accountViewModel.createCustomer(
+                        Customer(
+                            "0", emailEdit.text.toString(),
+                            nameEdit.text.toString(), lastNameEdit.text.toString(),
+                            passwordEdit.text.toString()
+                        )
+                    )
                 }
             }
         }
@@ -49,9 +53,24 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 is ResultWrapper.Loading -> {
                 }
                 is ResultWrapper.Success -> {
+                    accountViewModel.insertCustomer(it.value)
                 }
                 is ResultWrapper.Error -> {
                 }
+            }
+        }
+        accountViewModel.dataBaseCustomer.collectIt(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.apply {
+                    firstNameDatabase.text = it[0].first_name
+                    lastNameDatabase.text = it[0].last_name
+                    userNameDatabase.text = it[0].username
+                    emailDatabase.text = it[0].email
+                }
+
+            } else {
+                binding.availableAccount.visibility = View.GONE
+                binding.registerLayout.visibility = View.VISIBLE
             }
         }
     }
