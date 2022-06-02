@@ -31,12 +31,12 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         binding.apply {
 
             register.setOnClickListener {
-                if (nameEdit.text.isNullOrBlank() &&
+/*                if (nameEdit.text.isNullOrBlank() &&
                     lastNameEdit.text.isNullOrBlank() &&
                     emailEdit.text.isNullOrBlank() &&
                     userNameEdit.text.isNullOrBlank() &&
                     (passwordEdit.text == rePasswordEdit.text && passwordEdit.text.isNullOrBlank())
-                ) {
+                ) {*/
                     accountViewModel.createCustomer(
                         Customer(0,
                              emailEdit.text.toString(),
@@ -44,7 +44,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                             passwordEdit.text.toString()
                         )
                     )
-                }
+
             }
         }
         accountViewModel.createdUser.collectIt(viewLifecycleOwner) {

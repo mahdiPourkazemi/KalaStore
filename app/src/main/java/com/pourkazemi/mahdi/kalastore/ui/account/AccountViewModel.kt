@@ -25,7 +25,7 @@ class AccountViewModel @Inject constructor(
     val createdUser = _createdUser.asStateFlow()
 
     init {
-        //getAllCustomer()
+        getAllCustomer()
     }
 
     fun createCustomer(customer: Customer) {
