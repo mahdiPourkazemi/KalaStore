@@ -133,12 +133,27 @@
             android:layout_height="256dp"
             android:layout_margin="16dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/popular_tv"
+            app:layout_constraintBottom_toTopOf="@id/dots"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </androidx.viewpager2.widget.ViewPager2>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/dots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:tabBackground="@drawable/dot_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingStart="7dp"
+            app:layout_constraintBottom_toTopOf="@id/popular_tv"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabPaddingEnd="7dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/popular_recyclerView"

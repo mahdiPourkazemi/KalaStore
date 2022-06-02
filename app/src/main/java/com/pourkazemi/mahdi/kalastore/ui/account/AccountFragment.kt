@@ -29,6 +29,17 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            logoutButton.setOnClickListener {
+                accountViewModel.deleteCustomerFromDataBase(
+                    Customer(
+                        idDatabase.text.toString().toInt(),
+                        emailDatabase.text.toString(),
+                        firstNameDatabase.text.toString(),
+                        lastNameDatabase.text.toString(),
+                        userNameDatabase.text.toString()
+                    )
+                )
+            }
 
             register.setOnClickListener {
 /*                if (nameEdit.text.isNullOrBlank() &&
@@ -37,13 +48,14 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     userNameEdit.text.isNullOrBlank() &&
                     (passwordEdit.text == rePasswordEdit.text && passwordEdit.text.isNullOrBlank())
                 ) {*/
-                    accountViewModel.createCustomer(
-                        Customer(0,
-                             emailEdit.text.toString(),
-                            nameEdit.text.toString(), lastNameEdit.text.toString(),
-                            passwordEdit.text.toString()
-                        )
+                accountViewModel.createCustomer(
+                    Customer(
+                        0,
+                        emailEdit.text.toString(),
+                        nameEdit.text.toString(), lastNameEdit.text.toString(),
+                        passwordEdit.text.toString()
                     )
+                )
 
             }
         }
@@ -64,12 +76,13 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         accountViewModel.dataBaseCustomer.collectIt(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 binding.apply {
+                    idDatabase.text = it[0].id.toString()
                     firstNameDatabase.text = it[0].first_name
                     lastNameDatabase.text = it[0].last_name
                     userNameDatabase.text = it[0].username
                     emailDatabase.text = it[0].email
-                    availableAccount.visibility=View.VISIBLE
-                    registerLayout.visibility=View.GONE
+                    availableAccount.visibility = View.VISIBLE
+                    registerLayout.visibility = View.GONE
                 }
 
             } else {

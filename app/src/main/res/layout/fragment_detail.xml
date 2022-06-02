@@ -85,12 +85,14 @@
             tools:text="TextView yaaaa" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/buy_button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
             android:background="@color/red_dark"
             android:text="BUY"
+            android:textAlignment="center"
+            android:paddingTop="8dp"
             android:textColor="@color/red_light"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"

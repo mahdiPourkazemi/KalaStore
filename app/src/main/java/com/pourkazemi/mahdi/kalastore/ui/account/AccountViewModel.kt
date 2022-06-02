@@ -49,4 +49,9 @@ class AccountViewModel @Inject constructor(
             }
         }
     }
+    fun deleteCustomerFromDataBase(customer: Customer){
+        viewModelScope.launch {
+            repository.deleteCustomer(customer)
+        }
+    }
 }

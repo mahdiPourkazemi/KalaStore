@@ -1,6 +1,5 @@
 package com.pourkazemi.mahdi.kalastore
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -9,18 +8,15 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.pourkazemi.mahdi.kalastore.databinding.ActivityMainBinding
 import com.pourkazemi.mahdi.kalastore.ui.category.CategoryViewModel
 import com.pourkazemi.mahdi.kalastore.ui.home.ShearedViewModel
-import com.pourkazemi.mahdi.kalastore.ui.search.SearchFragment
 import com.pourkazemi.mahdi.kalastore.utils.NetworkStatus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.time.measureTimedValue
 
 
 @AndroidEntryPoint

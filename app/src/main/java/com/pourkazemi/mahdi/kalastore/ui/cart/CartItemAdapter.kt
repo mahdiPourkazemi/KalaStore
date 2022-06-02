@@ -1,4 +1,4 @@
-package com.pourkazemi.mahdi.kalastore.ui.category.specialcategory
+package com.pourkazemi.mahdi.kalastore.ui.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,13 +14,13 @@ import com.pourkazemi.mahdi.kalastore.databinding.SpecialModelItemBinding
 import com.pourkazemi.mahdi.kalastore.ui.detail.DetailFragmentDirections
 import timber.log.Timber
 
-class SpecialKalaAdapter :
-    androidx.recyclerview.widget.ListAdapter<Kala, SpecialKalaAdapter.SpecialKalaItemViewHolder>(
-        KalaItemDiffUtil()
+class CartItemAdapter :
+    androidx.recyclerview.widget.ListAdapter<Kala, CartItemAdapter.CartItemViewHolder>(
+        CartItemDiffUtil()
     ) {
 
 
-    inner class SpecialKalaItemViewHolder(
+    inner class CartItemViewHolder(
         private val binding: SpecialModelItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -53,7 +53,7 @@ class SpecialKalaAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ) = SpecialKalaItemViewHolder(
+    ) = CartItemViewHolder(
         SpecialModelItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -62,14 +62,14 @@ class SpecialKalaAdapter :
     )
 
     override fun onBindViewHolder(
-        holder: SpecialKalaItemViewHolder,
+        holder: CartItemViewHolder,
         position: Int
     ) {
         holder.mBind(getItem(position))
     }
 }
 
-class KalaItemDiffUtil : DiffUtil.ItemCallback<Kala>() {
+class CartItemDiffUtil : DiffUtil.ItemCallback<Kala>() {
 
     override fun areItemsTheSame(
         oldItem: Kala,

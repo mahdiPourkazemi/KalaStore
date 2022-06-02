@@ -1,10 +1,10 @@
 package com.pourkazemi.mahdi.kalastore.ui.home
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.get
+import androidx.core.view.marginEnd
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentHomeBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
@@ -43,6 +44,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             dateRecyclerView.adapter = dateAdapter
             rateRecyclerView.adapter = rateAdapter
             viewPager.adapter = sliderAdapter
+            TabLayoutMediator(dots, viewPager) { tab, position ->
+                tab.text = position.toString()
+            }.attach()
+
         }
         homeViewModel.listOfSpecialSell.collectIt(viewLifecycleOwner) {
             when (it) {
@@ -52,6 +57,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
                 is ResultWrapper.Success -> {
                    binding.shimmerSlider.stopShimmer()
+                    binding.dots.visibility=View.VISIBLE
                     binding.shimmerSlider.visibility=View.GONE
                     binding.viewPager.visibility=View.VISIBLE
                     sliderAdapter.submitList(it.value[0].image)

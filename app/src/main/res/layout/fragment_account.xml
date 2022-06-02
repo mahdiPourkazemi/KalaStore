@@ -237,6 +237,21 @@
                 app:layout_constraintGuide_percent=".8" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/id_database"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/red_dark"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@id/firstName_database"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
+                app:layout_constraintStart_toStartOf="@id/start_guideline_d"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="id" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/firstName_database"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -247,7 +262,7 @@
                 app:layout_constraintBottom_toTopOf="@id/lastName_database"
                 app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
                 app:layout_constraintStart_toStartOf="@id/start_guideline_d"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_database"
                 app:layout_constraintVertical_chainStyle="spread"
                 tools:text="first name" />
 
@@ -287,11 +302,33 @@
                 android:textAlignment="center"
                 android:textColor="@color/red_dark"
                 android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/logout_button"
                 app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
                 app:layout_constraintStart_toStartOf="@id/start_guideline_d"
                 app:layout_constraintTop_toBottomOf="@id/userName_database"
                 tools:text="email" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logout_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/red"
+                android:text="Log Out"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:cornerRadius="32dp"
+                app:elevation="4dp"
+                app:icon="@drawable/ic_baseline_cancel_24"
+                app:iconGravity="start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline_d"
+                app:layout_constraintStart_toStartOf="@id/start_guideline_d"
+                app:layout_constraintTop_toBottomOf="@id/email_database"
+                app:rippleColor="@color/red"
+                app:startIconTint="@color/white" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

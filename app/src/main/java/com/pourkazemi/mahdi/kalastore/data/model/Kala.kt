@@ -2,8 +2,12 @@ package com.pourkazemi.mahdi.kalastore.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "kala")
 data class Kala(
+    @PrimaryKey
     val id: Int,
     val name:String,
     val price:String,

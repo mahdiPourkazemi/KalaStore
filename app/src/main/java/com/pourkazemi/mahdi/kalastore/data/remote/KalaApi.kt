@@ -5,11 +5,9 @@ import com.pourkazemi.mahdi.kalastore.App.Companion.SECRET
 import com.pourkazemi.mahdi.kalastore.data.model.Customer
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
+import com.pourkazemi.mahdi.kalastore.data.model.Order
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface KalaApi {
 
@@ -54,5 +52,12 @@ interface KalaApi {
         @Query("consumer_key") key: String = KEY,
         @Query("consumer_secret") secret: String = SECRET,
     ): Response<Customer>
+
+    @POST("orders")
+    suspend fun createOrder(
+        @Body order: Order,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET,
+    ):Any
 
 }

@@ -2,10 +2,7 @@ package com.pourkazemi.mahdi.kalastore.di
 
 import android.content.Context
 import androidx.room.*
-import com.pourkazemi.mahdi.kalastore.data.local.CustomerDao
-import com.pourkazemi.mahdi.kalastore.data.local.CustomerDataBase
-import com.pourkazemi.mahdi.kalastore.data.local.LocalDataSource
-import com.pourkazemi.mahdi.kalastore.data.local.LocalDataSourceImp
+import com.pourkazemi.mahdi.kalastore.data.local.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +16,7 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(
+    fun provideCustomerDatabase(
         @ApplicationContext context: Context
     ): CustomerDataBase = Room.databaseBuilder(
         context.applicationContext,
@@ -29,14 +26,32 @@ object DataBaseModule {
 
     @Singleton
     @Provides
+    fun provideOrderDatabase(
+        @ApplicationContext context: Context
+    ): KalaDataBase = Room.databaseBuilder(
+        context.applicationContext,
+        KalaDataBase::class.java,
+        "order_database"
+    ).build()
+
+
+    @Singleton
+    @Provides
     fun provideCustomerDao(
         customerDataBase: CustomerDataBase
     ): CustomerDao = customerDataBase.customerDao()
 
     @Provides
+    fun provideOrderDao(
+        oderDataBase: KalaDataBase
+    ): KalaDao = oderDataBase.kalaDao()
+
+    @Singleton
+    @Provides
     fun provideLocalDataSourceImp(
-        customerDao: CustomerDao
-    ):LocalDataSource{
-        return LocalDataSourceImp(customerDao)
+        customerDao: CustomerDao,
+        kalaDao: KalaDao
+    ): LocalDataSource {
+        return LocalDataSourceImp(customerDao,kalaDao)
     }
 }

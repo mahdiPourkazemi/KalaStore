@@ -4,25 +4,43 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.net.toUri
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.pourkazemi.mahdi.kalastore.R
+import com.pourkazemi.mahdi.kalastore.data.model.Kala
+import com.pourkazemi.mahdi.kalastore.data.model.Order
+import com.pourkazemi.mahdi.kalastore.data.model.Product
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentDetailBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
+
     private val binding: FragmentDetailBinding by viewBinding(
         FragmentDetailBinding::bind
     )
 
-    //private val categoryViewModel: CategoryViewModel by activityViewModels()
+    private val detailViewModel: DetailViewModel by activityViewModels()
     private val detailNavArgs: DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+       binding.buyButton.setOnClickListener {
+           detailViewModel.insertKala(
+               Kala(
+                   detailNavArgs.kala.id,
+                   detailNavArgs.kala.name,
+                   detailNavArgs.kala.price,
+                   detailNavArgs.kala.description,
+                   detailNavArgs.kala.image
+               )
+           )
+       }
+
         binding.apply {
 
             description.text = detailNavArgs.kala.description
