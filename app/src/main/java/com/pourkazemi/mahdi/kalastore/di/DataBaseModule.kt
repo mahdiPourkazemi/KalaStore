@@ -26,7 +26,7 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideOrderDatabase(
+    fun provideKalaDatabase(
         @ApplicationContext context: Context
     ): KalaDataBase = Room.databaseBuilder(
         context.applicationContext,
@@ -42,7 +42,7 @@ object DataBaseModule {
     ): CustomerDao = customerDataBase.customerDao()
 
     @Provides
-    fun provideOrderDao(
+    fun provideKalaDao(
         oderDataBase: KalaDataBase
     ): KalaDao = oderDataBase.kalaDao()
 
