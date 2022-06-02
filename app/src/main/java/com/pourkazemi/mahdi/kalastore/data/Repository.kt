@@ -1,15 +1,12 @@
 package com.pourkazemi.mahdi.kalastore.data
 
 import com.pourkazemi.mahdi.kalastore.data.local.LocalDataSource
-import com.pourkazemi.mahdi.kalastore.data.local.LocalDataSourceImp
 import com.pourkazemi.mahdi.kalastore.data.model.Customer
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSource
 import com.pourkazemi.mahdi.kalastore.di.DispatchersModule
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.safeApiCall
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 import javax.inject.Inject
 
 class Repository @Inject constructor(

@@ -1,12 +1,9 @@
 package com.pourkazemi.mahdi.kalastore.data.remote
 
-import com.pourkazemi.mahdi.kalastore.App
 import com.pourkazemi.mahdi.kalastore.data.model.Customer
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Query
 
 interface RemoteDataSource {
     suspend fun getListKala(
@@ -25,6 +22,6 @@ interface RemoteDataSource {
 
     suspend fun getSpecialSellProduct(): Response<List<Kala>>
 
-    suspend fun createCustomer( customer: Customer ): Response<Customer>
+    suspend fun createCustomer( customer: Customer): Response<Customer>
 
 }

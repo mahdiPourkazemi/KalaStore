@@ -4,12 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pourkazemi.mahdi.kalastore.data.Repository
 import com.pourkazemi.mahdi.kalastore.data.model.Customer
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,7 +25,7 @@ class AccountViewModel @Inject constructor(
     val createdUser = _createdUser.asStateFlow()
 
     init {
-        getAllCustomer()
+        //getAllCustomer()
     }
 
     fun createCustomer(customer: Customer) {

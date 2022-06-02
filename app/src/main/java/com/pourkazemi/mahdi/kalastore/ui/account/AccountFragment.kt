@@ -2,10 +2,7 @@ package com.pourkazemi.mahdi.kalastore.ui.account
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -19,6 +16,7 @@ import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class AccountFragment : Fragment(R.layout.fragment_account) {
@@ -31,6 +29,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+
             register.setOnClickListener {
                 if (nameEdit.text.isNullOrBlank() &&
                     lastNameEdit.text.isNullOrBlank() &&
@@ -39,8 +38,8 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     (passwordEdit.text == rePasswordEdit.text && passwordEdit.text.isNullOrBlank())
                 ) {
                     accountViewModel.createCustomer(
-                        Customer(
-                            "0", emailEdit.text.toString(),
+                        Customer(0,
+                             emailEdit.text.toString(),
                             nameEdit.text.toString(), lastNameEdit.text.toString(),
                             passwordEdit.text.toString()
                         )
@@ -51,11 +50,14 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         accountViewModel.createdUser.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
+                    Timber.tag("mahdiTest").d("loading")
                 }
                 is ResultWrapper.Success -> {
                     accountViewModel.insertCustomer(it.value)
+                    Timber.tag("mahdiTest").d("add to data base")
                 }
                 is ResultWrapper.Error -> {
+                    Timber.tag("mahdiTest").d("create user error")
                 }
             }
         }
@@ -66,6 +68,8 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     lastNameDatabase.text = it[0].last_name
                     userNameDatabase.text = it[0].username
                     emailDatabase.text = it[0].email
+                    availableAccount.visibility=View.VISIBLE
+                    registerLayout.visibility=View.GONE
                 }
 
             } else {

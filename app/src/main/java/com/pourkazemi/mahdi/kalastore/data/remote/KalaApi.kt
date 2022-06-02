@@ -50,7 +50,9 @@ interface KalaApi {
 
     @POST("customers")
     suspend fun createCustomer(
-        @Body customer: Customer
-    ):Response<Customer>
+        @Body customer: Customer,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET,
+    ): Response<Customer>
 
 }

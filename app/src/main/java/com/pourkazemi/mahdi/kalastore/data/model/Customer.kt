@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose
 data class Customer(
     @PrimaryKey
     @Expose(serialize = false, deserialize = true)
-    val id: String,
+    val id: Int,
     val email: String,
     val first_name: String,
     val last_name: String,

@@ -15,7 +15,7 @@ class CustomerDeserializer : JsonDeserializer<Customer> {
     ): Customer {
         json?.asJsonObject?.let { jsonObject ->
             customer = Customer(
-                jsonObject.get("id").asString,
+                jsonObject.get("id").asInt,
                 jsonObject.get("email").asString,
                 jsonObject.get("first_name").asString,
                 jsonObject.get("last_name").asString,
