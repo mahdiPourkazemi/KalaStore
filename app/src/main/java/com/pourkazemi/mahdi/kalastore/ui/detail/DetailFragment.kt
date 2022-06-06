@@ -29,24 +29,24 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       binding.buyButton.setOnClickListener {
-           detailViewModel.insertKala(
-               Kala(
-                   detailNavArgs.kala.id,
-                   detailNavArgs.kala.name,
-                   detailNavArgs.kala.price,
-                   detailNavArgs.kala.description,
-                   detailNavArgs.kala.image
-               )
-           )
-       }
+        binding.buyButton.setOnClickListener {
+            detailViewModel.insertKala(
+                Kala(
+                    detailNavArgs.kala.id,
+                    detailNavArgs.kala.name,
+                    detailNavArgs.kala.price,
+                    detailNavArgs.kala.description,
+                    detailNavArgs.kala.image
+                )
+            )
+        }
 
         binding.apply {
 
-            description.text = detailNavArgs.kala.description
+            description.text = cleanDescription(detailNavArgs.kala.description)
             priceTv.text = detailNavArgs.kala.price
             name.text = detailNavArgs.kala.name
-            detailNavArgs.kala.image.let { listOfImage->
+            detailNavArgs.kala.image.let { listOfImage ->
                 val imgUri = listOfImage[0].toUri().buildUpon().build()
                 Glide.with(binding.root)
                     .load(imgUri)
@@ -58,5 +58,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     .into(detailImageView)
             }
         }
+    }
+
+    private fun cleanDescription(input: String): String {
+        return input.replace("</ br>", "")
+            .replace("<p/>", "")
+            .replace("</p>", "")
+            .replace("<p>", "")
+            .replace("<br />", "")
     }
 }

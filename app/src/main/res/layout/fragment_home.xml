@@ -117,13 +117,25 @@
                 android:id="@+id/shimmer_viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
-                android:padding="8dp"
-                android:visibility="visible"
                 android:background="@color/shimmer_color"
+                android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@id/popular_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/shimmer_dots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/shimmer_color"
+                app:layout_constraintBottom_toTopOf="@+id/popular_tv"
+                app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                app:tabBackground="@drawable/dot_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:tabPaddingEnd="7dp"
+                app:tabPaddingStart="7dp" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -131,12 +143,13 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="256dp"
-            android:layout_margin="16dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/dots"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/dots"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
 
         </androidx.viewpager2.widget.ViewPager2>
 
@@ -144,37 +157,34 @@
             android:id="@+id/dots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/popular_tv"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager"
             app:tabBackground="@drawable/dot_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
-            app:tabPaddingStart="7dp"
-            app:layout_constraintBottom_toTopOf="@id/popular_tv"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tabPaddingEnd="7dp"/>
+            app:tabPaddingEnd="7dp"
+            app:tabPaddingStart="7dp" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/popular_recyclerView"
             style="@style/size_of_rv_item"
+            android:background="@color/yellow"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/date_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/popular_tv"
             app:spanCount="1"
             tools:listitem="@layout/home_model_item" />
 
         <androidx.recyclerview.widget.RecyclerView
-
             android:id="@+id/date_recyclerView"
             style="@style/size_of_rv_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/rate_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_tv"
             app:spanCount="1"
@@ -182,11 +192,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rate_recyclerView"
+            android:background="@color/yellow"
             style="@style/size_of_rv_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rate_tv"
             app:spanCount="1"
@@ -194,39 +204,45 @@
 
         <TextView
             android:id="@+id/popular_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:gravity="bottom"
             android:text="Popular"
+            android:textAlignment="gravity"
             android:textColor="@color/red"
             android:textSize="32sp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/popular_recyclerView"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/viewPager"
-            app:layout_constraintVertical_chainStyle="spread" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/dots" />
 
         <TextView
             android:id="@+id/date_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Date"
             android:textColor="@color/red"
             android:textSize="32sp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/date_recyclerView"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/popular_recyclerView" />
 
         <TextView
             android:id="@+id/rate_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Rate"
+            android:background="@color/yellow"
             android:textColor="@color/red"
             android:textSize="32sp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/rate_recyclerView"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/date_recyclerView" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -246,7 +262,7 @@
             app:layout_constraintBottom_toTopOf="@+id/shimmer_rv_popular"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/shimmer_slider"
-            app:layout_constraintVertical_chainStyle="spread" />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/shimmer_tv_rate"
@@ -269,5 +285,16 @@
             app:layout_constraintBottom_toTopOf="@+id/shimmer_rv_date"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/shimmer_rv_popular" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/popular_tv"
+            app:layout_constraintEnd_toStartOf="@+id/popular_tv"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/popular_tv"
+            app:layout_constraintVertical_bias="0.51" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

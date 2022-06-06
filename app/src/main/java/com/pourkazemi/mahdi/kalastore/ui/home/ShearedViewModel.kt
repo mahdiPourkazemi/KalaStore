@@ -13,6 +13,7 @@ import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -27,7 +28,7 @@ class ShearedViewModel @Inject constructor(
     val listOfSpecialSell = _listOfSpecialSell.asStateFlow()
 
     private val _networkState: MutableStateFlow<NetworkStatus> =
-        MutableStateFlow(NetworkStatus.Available)
+        MutableStateFlow(NetworkStatus.Unavailable)
     val networkState = _networkState.asStateFlow()
 
     private val _splashScreen: MutableStateFlow<Boolean> = MutableStateFlow(true)

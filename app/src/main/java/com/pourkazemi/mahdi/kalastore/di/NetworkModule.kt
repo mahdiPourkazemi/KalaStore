@@ -18,12 +18,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Flow
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import kotlin.system.measureTimeMillis
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -59,8 +62,8 @@ object NetworkModule {
     fun provideOkHttpClient(logging: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
-/*            .connectTimeout(15, TimeUnit.SECONDS) // connect timeout
-            .readTimeout(15, TimeUnit.SECONDS)*/
+            .connectTimeout(15, TimeUnit.SECONDS) // connect timeout
+            .readTimeout(15, TimeUnit.SECONDS)
             .build()
     }
 

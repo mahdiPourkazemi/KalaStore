@@ -12,4 +12,5 @@
     <color name="red">#d50000</color>
     <color name="red_dark">#9b0000</color>
     <color name="red_light">#ff5131</color>
+    <color name="yellow">#FBC02D</color>
 </resources>

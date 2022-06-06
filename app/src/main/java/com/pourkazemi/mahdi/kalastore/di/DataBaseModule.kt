@@ -43,8 +43,8 @@ object DataBaseModule {
 
     @Provides
     fun provideKalaDao(
-        oderDataBase: KalaDataBase
-    ): KalaDao = oderDataBase.kalaDao()
+        kalaDataBase: KalaDataBase
+    ): KalaDao = kalaDataBase.kalaDao()
 
     @Singleton
     @Provides
