@@ -1,9 +1,6 @@
 package com.pourkazemi.mahdi.kalastore.data.remote
 
-import com.pourkazemi.mahdi.kalastore.data.model.Customer
-import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
-import com.pourkazemi.mahdi.kalastore.data.model.Order
+import com.pourkazemi.mahdi.kalastore.data.model.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -41,6 +38,14 @@ class RemoteDataSourceImp @Inject constructor(
 
     override suspend fun createOrder(order: Order) {
        kalaApi.createOrder(order)
+    }
+
+    override suspend fun getListOfReview(product_id: Int): Response<List<Review>> {
+       return kalaApi.getListOfReview(product_id)
+    }
+
+    override suspend fun createReview(review: Review): Response<Review> {
+       return kalaApi.createReview(review)
     }
 
 }

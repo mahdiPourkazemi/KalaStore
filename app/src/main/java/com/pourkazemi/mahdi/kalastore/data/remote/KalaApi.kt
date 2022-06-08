@@ -2,10 +2,7 @@ package com.pourkazemi.mahdi.kalastore.data.remote
 
 import com.pourkazemi.mahdi.kalastore.App.Companion.KEY
 import com.pourkazemi.mahdi.kalastore.App.Companion.SECRET
-import com.pourkazemi.mahdi.kalastore.data.model.Customer
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
-import com.pourkazemi.mahdi.kalastore.data.model.KalaCategory
-import com.pourkazemi.mahdi.kalastore.data.model.Order
+import com.pourkazemi.mahdi.kalastore.data.model.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -58,6 +55,19 @@ interface KalaApi {
         @Body order: Order,
         @Query("consumer_key") key: String = KEY,
         @Query("consumer_secret") secret: String = SECRET,
-    ):Any
+    ): Any
 
+    @GET("products/reviews")
+    suspend fun getListOfReview(
+        @Query("product") id: Int,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET,
+    ): Response<List<Review>>
+
+    @POST("products/reviews")
+    suspend fun createReview(
+        @Body review:Review,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET,
+    ): Response<Review>
 }

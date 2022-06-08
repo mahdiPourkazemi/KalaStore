@@ -17,11 +17,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight="0.9">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/detail_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,8 +38,10 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toTopOf="@+id/name"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
                     app:shapeAppearance="@style/corneredImageViewRounded"
                     app:strokeColor="@color/red"
                     app:strokeWidth="2dp"
@@ -43,7 +49,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/name"
-                    android:layout_width="0dp"
+                    android:layout_width="393dp"
                     android:layout_height="wrap_content"
                     android:lines="1"
                     android:maxLines="1"
@@ -54,33 +60,163 @@
                     android:textSize="32sp"
                     app:layout_constraintBottom_toTopOf="@+id/description"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_imageView"
                     tools:text="TextView yaaaa" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/description"
-                    android:layout_width="0dp"
+                    android:layout_width="393dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/red_dark"
                     android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/list_review_layout"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name"
                     tools:text="TextView yaaaa" />
 
+
+                <!--<include
+                    android:id="@+id/review_in_detail"
+                    layout="@layout/review"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description"
+                    tools:visibility="gone" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/list_review_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/send_reviewLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description"
+                    app:layout_constraintVertical_weight="0.8">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/review_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:spanCount="1"
+                        tools:listitem="@layout/review_item_item" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/send_reviewLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/list_review_layout"
+                    app:layout_constraintVertical_weight="0.2">
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/send_review"
+                        android:layout_width="0dp"
+                        android:layout_height="96dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/red_dark"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="send"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/avatar_send_review"
+                        app:layout_constraintStart_toStartOf="@+id/avatar_send_review"
+                        app:layout_constraintTop_toBottomOf="@+id/avatar_send_review" />
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/ratingBar_send"
+                        style="@style/Widget.AppCompat.RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:progressTint="@color/yellow"
+                        android:rating="5"
+                        android:stepSize="1"
+                        app:layout_constraintBottom_toTopOf="@+id/review_edit"
+                        app:layout_constraintEnd_toStartOf="@+id/avatar_send_review"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/review_edit"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:hint="review"
+                        app:boxStrokeColor="@color/red"
+                        app:boxStrokeWidth="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/avatar_send_review"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ratingBar_send"
+                        app:startIconContentDescription="like">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userNameEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/avatar_send_review"
+                        style="@style/image"
+                        android:layout_width="0dp"
+                        android:layout_height="96dp"
+                        app:layout_constraintBottom_toTopOf="@+id/send_review"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/corneredImageViewRounded"
+                        app:srcCompat="@drawable/ic_baseline_person_24"
+                        app:strokeColor="@color/red"
+                        app:strokeWidth="2dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/price_constraint"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

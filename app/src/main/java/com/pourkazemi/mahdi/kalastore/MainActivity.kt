@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
                     when (it) {
                         is NetworkStatus.Available -> {
                             Timber.tag("mahdiTest").d("Available")
-                            /*activityViewModel.getListProduct()
-                            categoryViewModel.getListKalaCategory()*/
+                            activityViewModel.getListProduct()
+                            categoryViewModel.getListKalaCategory()
                             mNavHost.navController.popBackStack(R.id.noInternetFragment, true)
                         }
                         is NetworkStatus.Unavailable -> {
@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
       if (mNavHost.navController.currentDestination?.id == R.id.noInternetFragment){
           moveTaskToBack(true)
-          Log.d("mahdiTest","yesss")
       }else{
           super.onBackPressed()
       }

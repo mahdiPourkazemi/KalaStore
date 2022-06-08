@@ -4,11 +4,13 @@ import com.pourkazemi.mahdi.kalastore.data.local.LocalDataSource
 import com.pourkazemi.mahdi.kalastore.data.model.Customer
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.Order
+import com.pourkazemi.mahdi.kalastore.data.model.Review
 import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSource
 import com.pourkazemi.mahdi.kalastore.di.DispatchersModule
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.safeApiCall
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import javax.inject.Inject
 
 class Repository @Inject constructor(
@@ -72,5 +74,13 @@ class Repository @Inject constructor(
     }
     suspend fun createOrder(order: Order){
        remoteDataSourceImp.createOrder(order)
+    }
+
+    suspend fun getListOfReview(product_id: Int)= safeApiCall(dispatcher){
+        remoteDataSourceImp.getListOfReview(product_id)
+    }
+
+    suspend fun createReview(review: Review)= safeApiCall(dispatcher){
+        remoteDataSourceImp.createReview(review)
     }
 }

@@ -28,7 +28,6 @@ class NoInternetFragment : Fragment(R.layout.fragment_no_internet) {
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity?.onBackPressed()
-                //findNavController().currentDestination
             }
         })
     }

@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,8 +17,11 @@ import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.Order
 import com.pourkazemi.mahdi.kalastore.data.model.Product
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentDetailBinding
+import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -28,6 +35,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adapter=ReviewItemListAdapter()
+
+        detailViewModel.getListOfReview(detailNavArgs.kala.id)
 
         binding.buyButton.setOnClickListener {
             detailViewModel.insertKala(
@@ -57,7 +67,22 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     )
                     .into(detailImageView)
             }
+
+            reviewList.adapter=adapter
         }
+       detailViewModel.ReviewOfProduct.collectIt(viewLifecycleOwner){
+           when (it) {
+               is ResultWrapper.Loading -> {
+               }
+               is ResultWrapper.Success -> {
+                   adapter.submitList(it.value)
+               }
+               is ResultWrapper.Error -> {
+               }
+           }
+       }
+
+
     }
 
     private fun cleanDescription(input: String): String {
@@ -66,5 +91,15 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             .replace("</p>", "")
             .replace("<p>", "")
             .replace("<br />", "")
+    }
+
+    private fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
+        lifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                collect {
+                    function.invoke(it)
+                }
+            }
+        }
     }
 }

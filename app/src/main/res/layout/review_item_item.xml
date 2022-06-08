@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressTint="@color/yellow"
+        android:rating="5"
+        android:scrollIndicators="start"
+        android:stepSize="1"
+        app:layout_constraintBottom_toTopOf="@+id/review"
+        app:layout_constraintEnd_toStartOf="@+id/avatar_review_imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatar_review_imageView"
+        style="@style/image"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/corneredImageViewRounded"
+        app:strokeColor="@color/red"
+        app:strokeWidth="2dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/review"
+        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/red_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/reviewer"
+        app:layout_constraintEnd_toStartOf="@+id/reviewer"
+        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/reviewer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        android:textColor="@color/red_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/avatar_review_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/avatar_review_imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
