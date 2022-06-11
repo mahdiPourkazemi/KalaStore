@@ -24,6 +24,7 @@ class ReviewDeserializer: JsonDeserializer<List<Review>> {
                             jsonObject.get("product_id").asInt,
                             jsonObject.get("review").asString,
                             jsonObject.get("reviewer").asString,
+                            jsonObject.get("reviewer_email").asString,
                             jsonObject.get("rating").asInt,
                             jsonObject.getAsJsonObject("reviewer_avatar_urls").get("96").asString
                         )

@@ -2,40 +2,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="160dp"
-    android:layout_height="240dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/home_imageView"
-        style="@style/image"
-        app:layout_constraintBottom_toTopOf="@+id/home_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/home_cardView"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight=".8"
-        app:shapeAppearance="@style/corneredImageViewRounded"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/home_tv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:lines="1"
-        android:maxLines="1"
-        android:padding="4dp"
-        android:layout_margin="4dp"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/red_dark"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_imageView"
-        app:layout_constraintVertical_weight="0.2"
-        tools:text="TextView yaaaa" />
+        android:backgroundTint="@color/red_light"
+        app:cardElevation="8dp"
+        android:layout_margin="10dp"
+        android:layout_width="192dp"
+        android:layout_height="320dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/home_imageView"
+                style="@style/image"
+                android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+                android:layout_weight=".75"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/home_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:lines="2"
+                android:elegantTextHeight="true"
+                android:textDirection="rtl"
+                android:maxLines="2"
+                android:padding="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/red_dark"
+                android:textSize="24sp"
+               android:layout_weight=".25"
+                tools:text="TextView yaaaa" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

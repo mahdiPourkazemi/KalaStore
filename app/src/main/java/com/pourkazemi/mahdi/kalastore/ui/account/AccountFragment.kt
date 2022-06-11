@@ -52,7 +52,9 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     Customer(
                         0,
                         emailEdit.text.toString(),
-                        nameEdit.text.toString(), lastNameEdit.text.toString(),
+                        nameEdit.text.toString(),
+                        lastNameEdit.text.toString(),
+
                         passwordEdit.text.toString()
                     )
                 )

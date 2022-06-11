@@ -83,4 +83,8 @@ class Repository @Inject constructor(
     suspend fun createReview(review: Review)= safeApiCall(dispatcher){
         remoteDataSourceImp.createReview(review)
     }
+
+    suspend fun newProductList(date: String)= safeApiCall(dispatcher){
+        remoteDataSourceImp.newProductList(date)
+    }
 }

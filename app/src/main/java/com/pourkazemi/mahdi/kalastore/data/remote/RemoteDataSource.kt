@@ -7,6 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.Query
 
 interface RemoteDataSource {
+
     suspend fun getListKala(
         orderType: String
     ): Response<List<Kala>>
@@ -30,4 +31,6 @@ interface RemoteDataSource {
     suspend fun getListOfReview( product_id: Int ): Response<List<Review>>
 
     suspend fun createReview( review:Review ): Response<Review>
+
+    suspend fun newProductList( date:String ): Response<List<Kala>>
 }

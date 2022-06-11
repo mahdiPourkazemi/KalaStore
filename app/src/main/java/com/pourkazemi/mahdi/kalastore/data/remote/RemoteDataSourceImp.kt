@@ -48,4 +48,8 @@ class RemoteDataSourceImp @Inject constructor(
        return kalaApi.createReview(review)
     }
 
+    override suspend fun newProductList(date: String): Response<List<Kala>> {
+       return kalaApi.newProductList(date)
+    }
+
 }

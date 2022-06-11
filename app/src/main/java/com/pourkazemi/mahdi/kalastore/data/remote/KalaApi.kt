@@ -70,4 +70,11 @@ interface KalaApi {
         @Query("consumer_key") key: String = KEY,
         @Query("consumer_secret") secret: String = SECRET,
     ): Response<Review>
+
+    @GET("products")
+    suspend fun newProductList(
+       @Query("after") date:String,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET
+    ): Response<List<Kala>>
 }

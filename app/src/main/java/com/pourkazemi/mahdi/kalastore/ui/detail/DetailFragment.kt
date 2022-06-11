@@ -16,6 +16,7 @@ import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.Order
 import com.pourkazemi.mahdi.kalastore.data.model.Product
+import com.pourkazemi.mahdi.kalastore.data.model.Review
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentDetailBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
@@ -35,7 +36,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter=ReviewItemListAdapter()
+        val adapter = ReviewItemListAdapter()
 
         detailViewModel.getListOfReview(detailNavArgs.kala.id)
 
@@ -47,6 +48,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     detailNavArgs.kala.price,
                     detailNavArgs.kala.description,
                     detailNavArgs.kala.image
+                )
+            )
+        }
+        binding.sendReview.setOnClickListener {
+            detailViewModel.sendReview(
+                Review(
+                    0,
+                    detailNavArgs.kala.id,
+                    binding.reviewEdit.editText?.text.toString(),
+                    "123456",//must get form data base but im so sick
+                    "mahdi3333@poori75.com",
+                    binding.ratingBarSend.rating.toInt(),
+                    "null"
                 )
             )
         }
@@ -68,19 +82,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     .into(detailImageView)
             }
 
-            reviewList.adapter=adapter
+            reviewList.adapter = adapter
         }
-       detailViewModel.ReviewOfProduct.collectIt(viewLifecycleOwner){
-           when (it) {
-               is ResultWrapper.Loading -> {
-               }
-               is ResultWrapper.Success -> {
-                   adapter.submitList(it.value)
-               }
-               is ResultWrapper.Error -> {
-               }
-           }
-       }
+        detailViewModel.ReviewOfProduct.collectIt(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                }
+                is ResultWrapper.Success -> {
+                    adapter.submitList(it.value)
+                }
+                is ResultWrapper.Error -> {
+                }
+            }
+        }
 
 
     }

@@ -34,4 +34,9 @@ class DetailViewModel @Inject constructor(
             }
         }
     }
+    fun sendReview(review: Review){
+       viewModelScope.launch {
+           repository.createReview(review)
+       }
+    }
 }

@@ -14,8 +14,8 @@
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/drawable/loading_img.xml" value="0.1465" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/drawable/selected_dot.xml" value="0.1465" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/category_model_item.xml" value="0.1794871794871795" />
-        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/category_shimmer_item.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/category_model_item.xml" value="0.1" />
+        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/category_shimmer_item.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/custom_actionbar.xml" value="0.1526268115942029" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/fragment_account.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/fragment_cart.xml" value="0.1794871794871795" />
@@ -25,15 +25,15 @@
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/fragment_no_internet.xml" value="0.264" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/fragment_special_category.xml" value="0.1" />
-        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/home_model_item.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/home_model_item.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/home_shimmer_item.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/item_model.xml" value="0.21770833333333334" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/model_item.xml" value="0.21770833333333334" />
-        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/review.xml" value="0.144" />
+        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/review.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/review_item_item.xml" value="0.176" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/shimmer_item.xml" value="0.16328125" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/slider_item.xml" value="0.1" />
-        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/special_model_item.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/special_model_item.xml" value="0.264" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/layout/special_shimmer_item.xml" value="0.1" />
         <entry key="..\:/Users/mahdi/AndroidStudioProjects/KalaStore/app/src/main/res/menu/menu.xml" value="0.21770833333333334" />
       </map>

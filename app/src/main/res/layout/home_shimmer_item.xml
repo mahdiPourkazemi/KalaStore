@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="160dp"
-    android:layout_height="240dp">
+    android:layout_width="192dp"
+    android:layout_height="320dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shimmer_home_imageView"
@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
         app:layout_constraintVertical_weight=".8"
-        app:shapeAppearance="@style/corneredImageViewRounded"
         app:strokeColor="@color/red"
         app:strokeWidth="2dp"
         tools:srcCompat="@tools:sample/avatars" />
@@ -36,7 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shimmer_home_imageView"
         app:layout_constraintVertical_weight="0.2"
-        app:shapeAppearance="@style/corneredImageViewRounded"
         app:strokeColor="@color/red"
         app:strokeWidth="2dp" />
 

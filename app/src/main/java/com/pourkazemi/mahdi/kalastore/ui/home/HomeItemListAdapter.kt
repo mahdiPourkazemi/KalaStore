@@ -12,6 +12,7 @@ import com.pourkazemi.mahdi.kalastore.R
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.databinding.HomeModelItemBinding
 import com.pourkazemi.mahdi.kalastore.ui.detail.DetailFragmentDirections
+import retrofit2.http.Url
 import timber.log.Timber
 
 class ItemListAdapter :
@@ -34,7 +35,11 @@ class ItemListAdapter :
             Timber.tag("mahdiTest").d("bind")
             binding.homeTv.text = kala.name
             kala.image.let { listOfImage->
-                val imgUri = listOfImage[0].toUri().buildUpon().build()
+               val imgUri =if(listOfImage.isNotEmpty()){
+                   listOfImage[0].toUri().buildUpon().build()
+               }else{
+                    "null".toUri().buildUpon().build()
+               }
                 Glide.with(binding.root)
                     .load(imgUri)
                     .apply(

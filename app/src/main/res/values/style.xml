@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="corneredImageViewRounded">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">10%</item>
-    </style>
 
     <style name="size_of_rv_item">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">248dp</item>
+        <item name="android:layout_height">360dp</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:visibility">invisible</item>
     </style>
 
     <style name="shimmer_size">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">248dp</item>
+        <item name="android:layout_height">260dp</item>
     </style>
 
     <style name="image">
-        <item name="android:padding">4dp</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:padding">8dp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:cropToPadding">true</item>
         <item name="android:scaleType">centerCrop</item>
+
     </style>
 
     <style name="shimmer_image">
