@@ -61,6 +61,11 @@
         android:name="com.pourkazemi.mahdi.kalastore.ui.internet.NoInternetFragment"
         android:label="fragment_no_internet"
         tools:layout="@layout/fragment_no_internet" />
+    <fragment
+        android:id="@+id/boughtHistoryFragment"
+        android:name="com.pourkazemi.mahdi.kalastore.ui.historyofbuy.BoughtHistoryFragment"
+        android:label="fragment_bought_history"
+        tools:layout="@layout/fragment_bought_history" />
 
 
 </navigation>

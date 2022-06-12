@@ -43,9 +43,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomNavigation.background = null
+        /*binding.bottomNavigation.menu.getItem(2).isEnabled = false*/
         val mNavHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(mNavHost.navController)
+
 
 
         binding.toolbar.ShapeableImageView.setOnClickListener {
@@ -76,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment -> visibilityBottomNavigation(true)
                 R.id.categoryFragment -> visibilityBottomNavigation(true)
                 R.id.cartFragment -> visibilityBottomNavigation(true)
+                R.id.boughtHistoryFragment-> visibilityBottomNavigation(true)
                 R.id.searchFragment -> {
                     visibilityBottomNavigation(false)
                     binding.toolbar.ShapeableImageView.visibility = View.GONE

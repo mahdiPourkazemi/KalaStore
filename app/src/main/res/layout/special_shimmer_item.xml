@@ -3,43 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
-    android:layout_marginTop="4dp"
-    android:background="@color/white">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shimmer_special_imageView"
-        style="@style/shimmer_image"
-        android:background="@color/shimmer_color"
-        android:backgroundTint="@color/shimmer_color"
-        android:tint="@color/shimmer_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/shimmer_special_textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/shimmer_special_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
         android:layout_margin="8dp"
-        android:background="@color/shimmer_color"
-        android:lines="1"
-        android:maxLines="1"
-        android:paddingTop="8dp"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/red_dark"
-        android:textSize="32sp"
+        android:backgroundTint="@color/red_light"
+        android:padding="4dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/shimmer_special_imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/shimmer_special_imageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:lines="4"
+                android:maxLines="4"
+                android:paddingTop="8dp"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="24sp"
+                android:text="loading loading loading loading"
+                android:textColor="@color/shimmer_color"
+                android:textColorHighlight="@color/shimmer_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:strokeColor="@color/red"
+                app:strokeWidth="2dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shimmer_special_textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:background="@color/shimmer_color"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:elevation="8dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/shimmer_special_imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

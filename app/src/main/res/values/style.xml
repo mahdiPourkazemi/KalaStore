@@ -11,7 +11,7 @@
 
     <style name="shimmer_size">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">260dp</item>
+        <item name="android:layout_height">360dp</item>
     </style>
 
     <style name="image">
@@ -43,4 +43,11 @@
         <item name="postSplashScreenTheme">@style/Theme.KalaStore</item>
         <item name="windowSplashScreenBackground">@color/red</item>
     </style>
+
+    <style name="Theme.Fab_Bottom_app_bar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#0F9D58</item>
+        <item name="colorPrimaryVariant">#0F9D58</item>
+        <item name="colorOnPrimary">#000</item>
+    </style>
+
 </resources>

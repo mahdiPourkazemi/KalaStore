@@ -2,40 +2,52 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="192dp"
-    android:layout_height="320dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shimmer_home_imageView"
-        style="@style/shimmer_image"
-        android:background="@color/shimmer_color"
-        android:backgroundTint="@color/shimmer_color"
-        android:tint="@color/shimmer_color"
-        app:layout_constraintBottom_toTopOf="@+id/shimmer_home_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
-        app:layout_constraintVertical_weight=".8"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/shimmer_home_textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="4dp"
-        android:background="@color/shimmer_color"
-        android:padding="2dp"
-        android:textSize="24sp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="192dp"
+        android:layout_height="320dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/red_light"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shimmer_home_imageView"
-        app:layout_constraintVertical_weight="0.2"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shimmer_home_imageView"
+                style="@style/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:background="@color/shimmer_color" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/shimmer_home_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight=".2"
+                android:elegantTextHeight="true"
+                android:lines="2"
+                android:maxLines="2"
+                android:padding="4dp"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:text="loading loading loading loading"
+                android:textColor="@color/shimmer_color"
+                android:textColorHighlight="@color/shimmer_color"
+                android:textDirection="rtl"
+                android:textSize="24sp"
+                tools:text="text view is here" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
