@@ -1,24 +1,18 @@
 package com.pourkazemi.mahdi.kalastore
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.pourkazemi.mahdi.kalastore.databinding.ActivityMainBinding
 import com.pourkazemi.mahdi.kalastore.ui.category.CategoryViewModel
 import com.pourkazemi.mahdi.kalastore.ui.home.ShearedViewModel
-import com.pourkazemi.mahdi.kalastore.ui.internet.NoInternetFragment
 import com.pourkazemi.mahdi.kalastore.utils.NetworkStatus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -44,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bottomNavigation.background = null
-        /*binding.bottomNavigation.menu.getItem(2).isEnabled = false*/
+        binding.bottomNavigation.menu.getItem(2).isEnabled = false
         val mNavHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(mNavHost.navController)
@@ -53,6 +47,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.ShapeableImageView.setOnClickListener {
             mNavHost.navController.navigate(R.id.searchFragment)
+        }
+        binding.fab.setOnClickListener {
+           mNavHost.navController.navigate(R.id.cartFragment)
         }
 
         lifecycleScope.launch {
@@ -75,27 +72,16 @@ class MainActivity : AppCompatActivity() {
         }
         mNavHost.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.accountFragment -> visibilityBottomNavigation(true)
-                R.id.homeFragment -> visibilityBottomNavigation(true)
-                R.id.categoryFragment -> visibilityBottomNavigation(true)
-                R.id.cartFragment -> visibilityBottomNavigation(true)
-                R.id.boughtHistoryFragment-> visibilityBottomNavigation(true)
                 R.id.searchFragment -> {
-                    visibilityBottomNavigation(false)
+                    binding.bottomNavigationLayout.visibility=View.GONE
                     binding.toolbar.ShapeableImageView.visibility = View.GONE
                 }
-                else -> visibilityBottomNavigation(false)
+                R.id.detailFragment ->binding.bottomNavigationLayout.visibility=View.GONE
+                else->{
+                    binding.bottomNavigationLayout.visibility=View.VISIBLE
+                    binding.toolbar.ShapeableImageView.visibility = View.VISIBLE
+                }
             }
-        }
-    }
-
-    private fun visibilityBottomNavigation(visible: Boolean) {
-        if (visible) {
-            binding.toolbar.ShapeableImageView.visibility = View.VISIBLE
-            binding.bottomNavigation.visibility = View.VISIBLE
-        } else {
-            binding.bottomNavigation.visibility = View.GONE
-            binding.toolbar.ShapeableImageView.visibility = View.VISIBLE
         }
     }
 

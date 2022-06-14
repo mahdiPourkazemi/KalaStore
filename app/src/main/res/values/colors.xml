@@ -9,11 +9,14 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="red_dark">#B71C1C</color>
-    <color name="red_light">#f4eedb</color>
+    <color name="red_light">#EDD3AD</color>
     <color name="yellow">#FBC02D</color>
 
     <color name="red">#DD2C00</color>
     <color name="amber">#FFD740</color>
     <color name="light_green">#E8F5E9</color>
     <color name="shimmer_color">#bdbdbd</color>
+    <color name="light_blue">#E0F7FA</color>
+    <color name="light_red">#FFEBEE</color>
+    <color name="light_purple">#F3E5F5</color>
 </resources>

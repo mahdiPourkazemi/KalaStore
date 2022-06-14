@@ -2,9 +2,7 @@ package com.pourkazemi.mahdi.kalastore.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.core.view.get
-import androidx.core.view.marginEnd
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -21,7 +19,6 @@ import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -31,13 +28,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     )
     private val homeViewModel: ShearedViewModel by activityViewModels()
 
+    private val sliderAdapter = Slider()
+    private val popularAdapter = ItemListAdapter()
+    private val dateAdapter = ItemListAdapter()
+    private val rateAdapter = ItemListAdapter()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val popularAdapter = ItemListAdapter()
-        val dateAdapter = ItemListAdapter()
-        val rateAdapter = ItemListAdapter()
-        val sliderAdapter = Slider()
 
         binding.apply {
             popularRecyclerView.adapter = popularAdapter
@@ -48,69 +45,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 tab.text = position.toString()
             }.attach()
 
-        }
-        homeViewModel.listOfSpecialSell.collectIt(viewLifecycleOwner) {
-            when (it) {
-                is ResultWrapper.Loading -> {
-                    binding.shimmerSlider.startShimmer()
-                    Timber.tag("mahdiTest").d("error")
-                }
-                is ResultWrapper.Success -> {
-                   binding.shimmerSlider.stopShimmer()
-                    binding.dots.visibility=View.VISIBLE
-                    binding.shimmerSlider.visibility=View.GONE
-                    binding.viewPager.visibility=View.VISIBLE
-                    sliderAdapter.submitList(it.value[0].image)
-                }
-                is ResultWrapper.Error -> {
-                    binding.shimmerSlider.stopShimmer()
-                    binding.shimmerSlider.visibility=View.GONE
-                    Timber.tag("mahdiTest").d("error")
-                }
+            errorSlider.setOnClickListener {
+                homeViewModel.getSpecialSell()
+            }
+            errorPopular.setOnClickListener {
+               homeViewModel.getKalaList("popularity")
+            }
+            errorDate.setOnClickListener {
+               homeViewModel.getKalaList("date")
+            }
+            errorRate.setOnClickListener {
+                homeViewModel.getKalaList("rating")
+            }
+            refreshLayout.setOnRefreshListener {
+                homeViewModel.getListProduct()
+                refreshLayout.isRefreshing = false
             }
         }
+        sliderInit()
+        popularListInit()
+        dateListInit()
+        rateListInit()
 
-        homeViewModel.listOfDateKala.collectIt(viewLifecycleOwner) {
-            when (it) {
-                is ResultWrapper.Loading -> {
-                    binding.shimmerRvDate.startShimmer()
-                    Timber.tag("mahdiTest").d("error")
-                }
-                is ResultWrapper.Success -> {
-                    binding.apply {
-                        success(dateRecyclerView, dateTv, shimmerRvDate, shimmerTvDate)
-                    }
-                    popularAdapter.submitList(it.value)
-                }
-                is ResultWrapper.Error -> {
-                    binding.apply {
-                        error(dateRecyclerView, dateTv, shimmerRvDate, shimmerTvDate)
-                    }
-                    Timber.tag("mahdiTest").d("error")
-                }
-            }
-        }
-        homeViewModel.listOfPopularKala.collectIt(viewLifecycleOwner) {
-            when (it) {
-                is ResultWrapper.Loading -> {
-                    binding.shimmerRvPopular.startShimmer()
-                    Timber.tag("mahdiTest").d("error")
-                }
-                is ResultWrapper.Success -> {
-                    binding.apply {
-                        success(popularRecyclerView, popularTv, shimmerRvPopular, shimmerTvPopular)
-                    }
-                    dateAdapter.submitList(it.value)
-                }
-                is ResultWrapper.Error -> {
-                    binding.apply {
-                        error(popularRecyclerView, popularTv, shimmerRvPopular, shimmerTvPopular)
-                    }
-                    Timber.tag("mahdiTest").d("error")
-                }
-            }
-        }
+    }
 
+    private fun rateListInit() {
         homeViewModel.listOfRatingKala.collectIt(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
@@ -118,18 +77,82 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
                 is ResultWrapper.Success -> {
                     binding.apply {
-                        success(rateRecyclerView, rateTv, shimmerRvRate, shimmerTvRate)
+                        success(rateRecyclerView, shimmerRvRate, errorRate)
                     }
                     rateAdapter.submitList(it.value)
                 }
                 is ResultWrapper.Error -> {
                     binding.apply {
-                        error(rateRecyclerView, rateTv, shimmerRvRate, shimmerTvRate)
+                        error(rateRecyclerView, shimmerRvRate, errorRate)
                     }
                 }
             }
         }
+    }
 
+    private fun dateListInit() {
+        homeViewModel.listOfDateKala.collectIt(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                    binding.shimmerRvDate.startShimmer()
+                }
+                is ResultWrapper.Success -> {
+                    binding.apply {
+                        success(dateRecyclerView, shimmerRvDate, errorDate)
+                    }
+                    popularAdapter.submitList(it.value)
+                }
+                is ResultWrapper.Error -> {
+                    binding.apply {
+                        error(dateRecyclerView, shimmerRvDate, errorDate)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun popularListInit() {
+        homeViewModel.listOfPopularKala.collectIt(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                    binding.shimmerRvPopular.startShimmer()
+                }
+                is ResultWrapper.Success -> {
+                    binding.apply {
+                        success(popularRecyclerView, shimmerRvPopular, errorPopular)
+                    }
+                    dateAdapter.submitList(it.value)
+                }
+                is ResultWrapper.Error -> {
+                    binding.apply {
+                        error(popularRecyclerView, shimmerRvPopular, errorPopular)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun sliderInit() {
+        homeViewModel.listOfSpecialSell.collectIt(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                    binding.shimmerSlider.startShimmer()
+                }
+                is ResultWrapper.Success -> {
+                    binding.shimmerSlider.stopShimmer()
+                    binding.dots.visibility = View.VISIBLE
+                    binding.shimmerSlider.visibility = View.GONE
+                    binding.viewPager.visibility = View.VISIBLE
+                    binding.errorSlider.visibility = View.GONE
+                    sliderAdapter.submitList(it.value[0].image)
+                }
+                is ResultWrapper.Error -> {
+                    binding.shimmerSlider.stopShimmer()
+                    binding.shimmerSlider.visibility = View.GONE
+                    binding.errorSlider.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     private fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
@@ -144,28 +167,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun success(
         recycleView: RecyclerView,
-        textView: TextView,
         shimmerFrameLayout: ShimmerFrameLayout,
-        shimmerTextView: TextView
+        errorButton: Button
     ) {
         shimmerFrameLayout.stopShimmer()
         recycleView.visibility = View.VISIBLE
-        textView.visibility = View.VISIBLE
         shimmerFrameLayout.visibility = View.GONE
-        shimmerTextView.visibility = View.GONE
+        errorButton.visibility = View.GONE
     }
 
     private fun error(
         recycleView: RecyclerView,
-        textView: TextView,
         shimmerFrameLayout: ShimmerFrameLayout,
-        shimmerTextView: TextView
+        errorButton: Button
     ) {
-
         shimmerFrameLayout.stopShimmer()
         recycleView.visibility = View.GONE
-        textView.visibility = View.GONE
-        shimmerFrameLayout.visibility = View.GONE
-        shimmerTextView.visibility = View.GONE
+        shimmerFrameLayout.visibility = View.VISIBLE
+        errorButton.visibility = View.VISIBLE
     }
 }

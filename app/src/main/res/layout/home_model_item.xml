@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:lines="2"
+                android:textColorHighlight="@color/shimmer_color"
                 android:elegantTextHeight="true"
                 android:textDirection="rtl"
                 android:maxLines="2"

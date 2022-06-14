@@ -23,6 +23,7 @@ class ShearedViewModel @Inject constructor(
     private val repository: Repository,
     private val networkStatusTracker: NetworkStatusTracker
 ) : ViewModel() {
+
     private val _listOfSpecialSell: MutableStateFlow<ResultWrapper<List<Kala>>> =
         MutableStateFlow(ResultWrapper.Loading)
     val listOfSpecialSell = _listOfSpecialSell.asStateFlow()
@@ -87,6 +88,22 @@ class ShearedViewModel @Inject constructor(
             }
         }
     }
+    fun getSpecialSell(){
+        viewModelScope.launch {
+            repository.getSpecialSellProduct().collect{
+                _listOfSpecialSell.emit(it)
+            }
+        }
+    }
+   fun getKalaList(orderType:String){
+       viewModelScope.launch {
+           repository.getListKala(
+               orderType
+           ).collect {
+               _listOfPopularKala.emit(it)
+           }
+       }
+   }
 
 /*    private fun checkEnterAppConnection(context: Context): NetworkStatus {
         return if ((context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager?)?.isDefaultNetworkActive == true) {

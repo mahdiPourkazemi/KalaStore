@@ -41,12 +41,12 @@
                 android:padding="4dp"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:text="loading loading loading loading"
+                android:text="@string/loading"
                 android:textColor="@color/shimmer_color"
                 android:textColorHighlight="@color/shimmer_color"
                 android:textDirection="rtl"
                 android:textSize="24sp"
-                tools:text="text view is here" />
+                tools:text="@string/loading" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 

@@ -5,4 +5,8 @@
     <string name="home">HOME</string>
     <string name="list">CATEGORY</string>
     <string name="account">ACCOUNT</string>
+    <string name="loading">loading loading loading loading</string>
+    <string name="rate">بیشترین امتیاز</string>
+    <string name="date">تازه ترین پیشنهاد</string>
+    <string name="popular">پرفروش ترین</string>
 </resources>

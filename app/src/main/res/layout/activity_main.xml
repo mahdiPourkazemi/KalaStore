@@ -34,7 +34,6 @@
         android:id="@+id/bottom_navigation_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -44,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
-            android:background="@android:color/transparent"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="16dp"
             app:fabCradleRoundedCornerRadius="24dp"
@@ -55,7 +53,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="16dp"
-                android:background="@android:color/transparent"
                 app:menu="@menu/menu" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -64,7 +61,6 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:elevation="8dp"
             android:src="@drawable/ic_baseline_shopping_cart_24"
