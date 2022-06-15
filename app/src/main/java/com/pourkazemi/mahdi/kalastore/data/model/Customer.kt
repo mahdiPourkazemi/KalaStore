@@ -13,4 +13,6 @@ data class Customer(
     val first_name: String,
     val last_name: String,
     val username: String,
+    @Expose(serialize = true, deserialize = false)
+    val password:String=""
 )

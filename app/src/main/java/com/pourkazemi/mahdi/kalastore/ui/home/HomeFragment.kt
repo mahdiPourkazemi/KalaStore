@@ -57,10 +57,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             errorRate.setOnClickListener {
                 homeViewModel.getKalaList("rating")
             }
-            refreshLayout.setOnRefreshListener {
+/*            refreshLayout.setOnRefreshListener {
                 homeViewModel.getListProduct()
                 refreshLayout.isRefreshing = false
-            }
+            }*/
         }
         sliderInit()
         popularListInit()

@@ -6,353 +6,350 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayout"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/constraint"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/light_green">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_slider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/light_green">
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="256dp"
-                    android:layout_margin="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shimmer_repeat_mode="restart"
-                    app:shimmer_shape="linear">
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/shimmer_viewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="256dp"
-                        android:background="@color/shimmer_color"
-                        android:padding="8dp" />
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/shimmer_dots"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/shimmer_color"
-                        app:tabBackground="@drawable/dot_selector"
-                        app:tabGravity="center"
-                        app:tabIndicatorHeight="0dp"
-                        app:tabPaddingEnd="7dp"
-                        app:tabPaddingStart="7dp" />
-
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/error_slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="256dp"
-                    android:layout_margin="16dp"
-                    android:backgroundTint="@color/shimmer_color"
-                    android:padding="8dp"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:visibility="gone"
-                    app:icon="@drawable/ic_baseline_autorenew_24"
-                    app:iconGravity="textStart"
-                    app:iconSize="@android:dimen/thumbnail_height"
-                    app:iconTint="@color/red"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="256dp"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shimmer_repeat_mode="restart"
+                app:shimmer_shape="linear">
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
+                    android:id="@+id/shimmer_viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="256dp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toTopOf="@id/dots"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@color/shimmer_color"
+                    android:padding="8dp" />
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/dots"
+                    android:id="@+id/shimmer_dots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewPager"
+                    android:background="@color/shimmer_color"
                     app:tabBackground="@drawable/dot_selector"
                     app:tabGravity="center"
                     app:tabIndicatorHeight="0dp"
                     app:tabPaddingEnd="7dp"
                     app:tabPaddingStart="7dp" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/error_slider"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/shimmer_color"
+                android:padding="8dp"
+                android:text=""
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:icon="@drawable/ic_baseline_autorenew_24"
+                app:iconGravity="textStart"
+                app:iconSize="@android:dimen/thumbnail_height"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/dots"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/dots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_blue">
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewPager"
+                app:tabBackground="@drawable/dot_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:tabPaddingEnd="7dp"
+                app:tabPaddingStart="7dp" />
 
-                <TextView
-                    android:id="@+id/popular_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:padding="16dp"
-                    android:text="@string/popular"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/red"
-                    android:textDirection="rtl"
-                    android:textSize="32sp"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_rv_popular"
-                    style="@style/shimmer_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/popular_tv"
-                    app:shimmer_repeat_mode="restart"
-                    app:shimmer_shape="linear">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_blue">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <include layout="@layout/home_shimmer_item" />
-
-                        <include layout="@layout/home_shimmer_item" />
-
-                        <include layout="@layout/home_shimmer_item" />
-
-                        <include layout="@layout/home_shimmer_item" />
-
-                        <include layout="@layout/home_shimmer_item" />
-
-                    </LinearLayout>
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/error_popular"
-                    android:layout_width="match_parent"
-                    android:layout_height="360dp"
-                    android:layout_margin="16dp"
-                    android:layout_marginTop="40dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:padding="16dp"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:visibility="gone"
-                    app:icon="@drawable/ic_baseline_autorenew_24"
-                    app:iconGravity="textStart"
-                    app:iconSize="@android:dimen/thumbnail_height"
-                    app:iconTint="@color/red"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/popular_tv" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/popular_recyclerView"
-                    style="@style/size_of_rv_item"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/popular_tv"
-                    app:spanCount="1"
-                    tools:listitem="@layout/home_model_item" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/popular_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_red">
+                android:gravity="bottom"
+                android:padding="16dp"
+                android:text="@string/popular"
+                android:textAlignment="gravity"
+                android:textColor="@color/red"
+                android:textDirection="rtl"
+                android:textSize="32sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/date_tv"
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_rv_popular"
+                style="@style/shimmer_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popular_tv"
+                app:shimmer_repeat_mode="restart"
+                app:shimmer_shape="linear">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:padding="16dp"
-                    android:text="@string/date"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/red"
-                    android:textDirection="rtl"
-                    android:textSize="32sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:orientation="horizontal">
 
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_rv_date"
-                    style="@style/shimmer_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/date_tv"
-                    app:shimmer_repeat_mode="restart"
-                    app:shimmer_shape="linear">
+                    <include layout="@layout/home_shimmer_item" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
-                        <include layout="@layout/home_shimmer_item" />
-
-                    </LinearLayout>
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/date_recyclerView"
-                    style="@style/size_of_rv_item"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/date_tv"
-                    app:spanCount="1"
-                    tools:listitem="@layout/home_model_item" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/error_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="360dp"
-                    android:layout_margin="16dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:padding="16dp"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:visibility="gone"
-                    app:icon="@drawable/ic_baseline_autorenew_24"
-                    app:iconGravity="textStart"
-                    app:iconSize="@android:dimen/thumbnail_height"
-                    app:iconTint="@color/red"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/date_tv" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/error_popular"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_margin="16dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@android:color/transparent"
+                android:padding="16dp"
+                android:text=""
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:icon="@drawable/ic_baseline_autorenew_24"
+                app:iconGravity="textStart"
+                app:iconSize="@android:dimen/thumbnail_height"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popular_tv" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popular_recyclerView"
+                style="@style/size_of_rv_item"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popular_tv"
+                app:reverseLayout="true"
+                app:spanCount="1"
+                tools:listitem="@layout/home_model_item" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_red">
+
+            <TextView
+                android:id="@+id/date_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_purple">
+                android:gravity="bottom"
+                android:padding="16dp"
+                android:text="@string/date"
+                android:textAlignment="gravity"
+                android:textColor="@color/red"
+                android:textDirection="rtl"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/rate_tv"
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_rv_date"
+                style="@style/shimmer_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_tv"
+                app:shimmer_repeat_mode="restart"
+                app:shimmer_shape="linear">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:padding="16dp"
-                    android:text="@string/rate"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/red"
-                    android:textDirection="rtl"
-                    android:textSize="32sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:orientation="horizontal">
 
-                <com.facebook.shimmer.ShimmerFrameLayout
+                    <include layout="@layout/home_shimmer_item" />
 
-                    android:id="@+id/shimmer_rv_rate"
-                    style="@style/shimmer_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rate_tv"
-                    app:shimmer_repeat_mode="restart"
-                    app:shimmer_shape="linear">
+                    <include layout="@layout/home_shimmer_item" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                    <include layout="@layout/home_shimmer_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
-                        <include layout="@layout/home_shimmer_item" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/date_recyclerView"
+                style="@style/size_of_rv_item"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_tv"
+                app:reverseLayout="true"
+                app:spanCount="1"
+                tools:listitem="@layout/home_model_item" />
 
-                        <include layout="@layout/home_shimmer_item" />
-
-                    </LinearLayout>
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rate_recyclerView"
-                    style="@style/size_of_rv_item"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rate_tv"
-                    app:spanCount="1"
-                    tools:listitem="@layout/home_model_item" />
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/error_rate"
-                    android:layout_width="match_parent"
-                    android:layout_height="360dp"
-                    android:layout_margin="16dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:padding="16dp"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:visibility="gone"
-                    app:icon="@drawable/ic_baseline_autorenew_24"
-                    app:iconGravity="textStart"
-                    app:iconSize="@android:dimen/thumbnail_height"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rate_tv" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/error_date"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:background="@android:color/transparent" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                android:layout_height="360dp"
+                android:layout_margin="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:padding="16dp"
+                android:text=""
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:icon="@drawable/ic_baseline_autorenew_24"
+                app:iconGravity="textStart"
+                app:iconSize="@android:dimen/thumbnail_height"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_tv" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_purple">
+
+            <TextView
+                android:id="@+id/rate_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:padding="16dp"
+                android:text="@string/rate"
+                android:textAlignment="gravity"
+                android:textColor="@color/red"
+                android:textDirection="rtl"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+
+                android:id="@+id/shimmer_rv_rate"
+                style="@style/shimmer_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rate_tv"
+                app:shimmer_repeat_mode="restart"
+                app:shimmer_shape="linear">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/home_shimmer_item" />
+
+                    <include layout="@layout/home_shimmer_item" />
+
+                    <include layout="@layout/home_shimmer_item" />
+
+                    <include layout="@layout/home_shimmer_item" />
+
+                    <include layout="@layout/home_shimmer_item" />
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rate_recyclerView"
+                style="@style/size_of_rv_item"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rate_tv"
+                app:reverseLayout="true"
+                app:spanCount="1"
+                tools:listitem="@layout/home_model_item" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/error_rate"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_margin="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:padding="16dp"
+                android:text=""
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:icon="@drawable/ic_baseline_autorenew_24"
+                app:iconGravity="textStart"
+                app:iconSize="@android:dimen/thumbnail_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rate_tv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.core.widget.NestedScrollView>

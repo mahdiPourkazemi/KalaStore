@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface LocalDataSource {
     suspend fun insertCustomer(customer: Customer)
     suspend fun deleteCustomer(customer: Customer)
+    suspend fun deleteAllCustomer()
     fun getAllCustomer(): Flow<List<Customer>>
 
     suspend fun insertKala(kala: Kala)

@@ -57,6 +57,10 @@ class Repository @Inject constructor(
         localDataSourceImp.deleteCustomer(customer)
     }
 
+    suspend fun deleteAllCustomer() {
+        localDataSourceImp.deleteAllCustomer()
+    }
+
     fun getAllCustomer(): Flow<List<Customer>> {
         return localDataSourceImp.getAllCustomer()
     }

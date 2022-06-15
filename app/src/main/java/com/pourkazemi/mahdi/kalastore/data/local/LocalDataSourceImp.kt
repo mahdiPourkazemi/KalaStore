@@ -18,6 +18,10 @@ class LocalDataSourceImp @Inject constructor(
         customerDao.deleteCustomer(customer)
     }
 
+    override suspend fun deleteAllCustomer() {
+       customerDao.deleteAllCustomer()
+    }
+
     override fun getAllCustomer(): Flow<List<Customer>> {
         return customerDao.getAllCustomer()
     }
