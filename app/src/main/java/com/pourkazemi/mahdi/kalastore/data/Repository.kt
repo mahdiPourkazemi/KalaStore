@@ -1,10 +1,7 @@
 package com.pourkazemi.mahdi.kalastore.data
 
 import com.pourkazemi.mahdi.kalastore.data.local.LocalDataSource
-import com.pourkazemi.mahdi.kalastore.data.model.Customer
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
-import com.pourkazemi.mahdi.kalastore.data.model.Order
-import com.pourkazemi.mahdi.kalastore.data.model.Review
+import com.pourkazemi.mahdi.kalastore.data.model.*
 import com.pourkazemi.mahdi.kalastore.data.remote.RemoteDataSource
 import com.pourkazemi.mahdi.kalastore.di.DispatchersModule
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.safeApiCall
@@ -76,19 +73,30 @@ class Repository @Inject constructor(
     fun getAllKala(): Flow<List<Kala>> {
         return localDataSourceImp.getAllKala()
     }
-    suspend fun createOrder(order: Order){
-       remoteDataSourceImp.createOrder(order)
+
+    suspend fun createOrder(customerId: Int, order: Order) {
+        remoteDataSourceImp.createOrder(customerId, order)
     }
 
-    suspend fun getListOfReview(product_id: Int)= safeApiCall(dispatcher){
+    suspend fun getOrderList(
+        status: String, customerId: Int
+    ) = safeApiCall(dispatcher) {
+        remoteDataSourceImp.getOrderList(status, customerId)
+    }
+
+    suspend fun getListOfReview(product_id: Int) = safeApiCall(dispatcher) {
         remoteDataSourceImp.getListOfReview(product_id)
     }
 
-    suspend fun createReview(review: Review)= safeApiCall(dispatcher){
+    suspend fun createReview(review: Review) = safeApiCall(dispatcher) {
         remoteDataSourceImp.createReview(review)
     }
 
-    suspend fun newProductList(date: String)= safeApiCall(dispatcher){
+    suspend fun newProductList(date: String) = safeApiCall(dispatcher) {
         remoteDataSourceImp.newProductList(date)
+    }
+
+    suspend fun getSpecialProduct(id: String)= safeApiCall(dispatcher){
+        remoteDataSourceImp.getSpecialProduct(id)
     }
 }

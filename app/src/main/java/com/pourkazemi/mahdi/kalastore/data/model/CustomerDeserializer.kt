@@ -20,6 +20,7 @@ class CustomerDeserializer : JsonDeserializer<Customer> {
                 jsonObject.get("first_name").asString,
                 jsonObject.get("last_name").asString,
                 jsonObject.get("username").asString,
+                "null"
             )
         }
         return customer

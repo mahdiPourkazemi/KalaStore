@@ -2,13 +2,16 @@ package com.pourkazemi.mahdi.kalastore
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.pourkazemi.mahdi.kalastore.databinding.ActivityMainBinding
 import com.pourkazemi.mahdi.kalastore.ui.category.CategoryViewModel
@@ -37,12 +40,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigation.background = null
-        binding.bottomNavigation.menu.getItem(2).isEnabled = false
+
         val mNavHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(mNavHost.navController)
-
+        binding.bottomNavigation.background = null
+        binding.bottomNavigation.menu.getItem(2).isEnabled = false
 
 
         binding.toolbar.ShapeableImageView.setOnClickListener {
@@ -77,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                     binding.toolbar.ShapeableImageView.visibility = View.GONE
                 }
                 R.id.detailFragment ->binding.bottomNavigationLayout.visibility=View.GONE
+                R.id.cartFragment -> binding.bottomNavigationLayout.visibility=View.GONE
                 else->{
                     binding.bottomNavigationLayout.visibility=View.VISIBLE
                     binding.toolbar.ShapeableImageView.visibility = View.VISIBLE

@@ -4,6 +4,7 @@ import com.pourkazemi.mahdi.kalastore.App
 import com.pourkazemi.mahdi.kalastore.data.model.*
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RemoteDataSource {
@@ -26,11 +27,15 @@ interface RemoteDataSource {
 
     suspend fun createCustomer(customer: Customer): Response<Customer>
 
-    suspend fun createOrder(order: Order): Any
+    suspend fun createOrder(customerId: Int, order: Order): Any
 
-    suspend fun getListOfReview( product_id: Int ): Response<List<Review>>
+    suspend fun getOrderList(status: String, customerId: Int): Response<List<ReceiveOrder>>
 
-    suspend fun createReview( review:Review ): Response<Review>
+    suspend fun getListOfReview(product_id: Int): Response<List<Review>>
 
-    suspend fun newProductList( date:String ): Response<List<Kala>>
+    suspend fun createReview(review: Review): Response<Review>
+
+    suspend fun newProductList(date: String): Response<List<Kala>>
+
+    suspend fun getSpecialProduct( id: String): Response<Kala>
 }

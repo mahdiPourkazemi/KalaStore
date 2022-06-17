@@ -1,9 +1,9 @@
 package com.pourkazemi.mahdi.kalastore.ui.account
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.core.view.isEmpty
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +16,7 @@ import com.pourkazemi.mahdi.kalastore.databinding.FragmentAccountBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -37,34 +38,43 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
 
 
     private fun initDataBaseCustomer() {
-        accountViewModel.dataBaseCustomer.collectIt {
-            if (it.isNotEmpty()) {
-                binding.apply {
-                    idDatabase.text = it[0].id.toString()
-                    firstNameDatabase.text = it[0].first_name
-                    lastNameDatabase.text = it[0].last_name
-                    userNameDatabase.text = it[0].username
-                    emailDatabase.text = it[0].email
-                    availableAccount.visibility = View.VISIBLE
-                    registerLayout.visibility = View.GONE
-                }
+        viewLifecycleOwner.lifecycleScope.launch{
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                accountViewModel.dataBaseCustomer.collectLatest {
+                    if (it.isNotEmpty()) {
+                        binding.apply {
+                            idDatabase.text = it[0].id.toString()
+                            firstNameDatabase.text = it[0].first_name
+                            lastNameDatabase.text = it[0].last_name
+                            userNameDatabase.text = it[0].username
+                            emailDatabase.text = it[0].email
+                            availableAccount.visibility = View.VISIBLE
+                            registerLayout.visibility = View.GONE
+                        }
 
-            } else {
-                binding.availableAccount.visibility = View.GONE
-                binding.registerLayout.visibility = View.VISIBLE
-                Snackbar.make(requireView(),resources.getString(R.string.signUpFail), Snackbar.LENGTH_LONG).show()
+                    } else {
+                        binding.availableAccount.visibility = View.GONE
+                        binding.registerLayout.visibility = View.VISIBLE
+                        Snackbar.make(
+                            requireView(),
+                            resources.getString(R.string.signUpFail),
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
             }
         }
+
     }
 
     private fun signUpClick() {
         binding.apply {
             register.setOnClickListener {
-                if (nameEdit.text!!.isNotEmpty() &&
-                    lastNameEdit.text!!.isNotEmpty() &&
-                    emailEdit.text!!.isNotEmpty() &&
-                    userNameEdit.text!!.isNotEmpty() &&
-                    (passwordEdit.text == rePasswordEdit.text && passwordEdit.text!!.isNotEmpty() )
+                if (emailEdit.text.toString().isNotEmpty() &&
+                    nameEdit.text.toString().isNotEmpty() &&
+                    lastNameEdit.text.toString().isNotEmpty() &&
+                    userNameEdit.text.toString().isNotEmpty() &&
+                    passwordEdit.text.toString().isNotEmpty()
                 ) {
                     accountViewModel.createCustomer(
                         Customer(
@@ -79,10 +89,10 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 } else {
                     MaterialAlertDialogBuilder(requireActivity())
                         .setMessage(resources.getString(R.string.empetyField))
-                        .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
+                        .setNegativeButton(resources.getString(R.string.decline)) { dialog, _ ->
                             dialog.dismiss()
                         }
-                        .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                        .setPositiveButton(resources.getString(R.string.accept)) { dialog, _ ->
                             dialog.dismiss()
                         }
                         .show()

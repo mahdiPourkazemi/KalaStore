@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pourkazemi.mahdi.kalastore.data.Repository
 import com.pourkazemi.mahdi.kalastore.data.model.Kala
-import com.pourkazemi.mahdi.kalastore.data.model.Order
+import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,32 +19,41 @@ class CardViewModel @Inject constructor(
         MutableStateFlow(listOf())
     val dataBaseKala = _dataBaseKala.asStateFlow()
 
+    private val _listOfOrderKala: MutableStateFlow<List<Kala>> =
+        MutableStateFlow(listOf())
+    val listOfOrderKala = _listOfOrderKala.asStateFlow()
+
     init {
-        getAllKala()
-    }
 
-    private fun getAllKala() {
+        val productList = mutableListOf<Kala>()
         viewModelScope.launch {
-            repository.getAllKala().collect {
-                _dataBaseKala.emit(it)
+            repository.getAllCustomer().filterNotNull().collectLatest {
+                it[0].id.let {
+                    repository.getOrderList("pending", it).onCompletion {
+                        _listOfOrderKala.emit(productList.toList())
+                    }.collect {
+                        when (it) {
+                            is ResultWrapper.Success -> {
+                                it.value.onEach {
+                                    it.line_items.onEach {
+                                        repository.getSpecialProduct(it.product_id.toString())
+                                            .onCompletion { }
+                                            .collect {
+                                                when (it) {
+                                                    is ResultWrapper.Success -> {
+                                                        productList.add(it.value)
+                                                    }
+                                                }
+                                            }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
             }
-        }
-    }
-
-    fun deleteKala(kala: Kala) {
-        viewModelScope.launch {
-            repository.deleteKala(kala)
-        }
-    }
-
-    fun insertKala(kala: Kala) {
-        viewModelScope.launch {
-            repository.insertKala(kala)
-        }
-    }
-    fun createOrder(order: Order){
-        viewModelScope.launch {
-            repository.createOrder(order)
         }
     }
 }

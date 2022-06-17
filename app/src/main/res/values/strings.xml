@@ -11,6 +11,7 @@
     <string name="popular">پرفروش ترین</string>
 
     <string name="signUpFail">ثبت نام شما انجام نشده است</string>
+    <string name="buyCondition">قبل از خرید باید ثبت نام کنید</string>
     <string name="empetyField">هیچ کدام از ایتم ها نباید خالی باشد</string>
     <string name="accept">قبول</string>
     <string name="decline">ثبت نام نمی کنم</string>

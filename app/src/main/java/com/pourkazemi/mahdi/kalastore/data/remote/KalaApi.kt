@@ -52,10 +52,26 @@ interface KalaApi {
 
     @POST("orders")
     suspend fun createOrder(
+        @Query("customer_id") customerId: Int,
         @Body order: Order,
         @Query("consumer_key") key: String = KEY,
         @Query("consumer_secret") secret: String = SECRET,
-    ): Any
+    ): Response<List<Order>>
+
+    @GET("orders")
+    suspend fun getOrderList(
+        @Query("status") status: String,
+        @Query("customer") customerId: Int,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET,
+        ): Response<List<ReceiveOrder>>
+
+    @GET("products/{id}")
+    suspend fun getSpecialProduct(
+        @Path("id") id: String,
+        @Query("consumer_key") key: String = KEY,
+        @Query("consumer_secret") secret: String = SECRET,
+    ): Response<Kala>
 
     @GET("products/reviews")
     suspend fun getListOfReview(

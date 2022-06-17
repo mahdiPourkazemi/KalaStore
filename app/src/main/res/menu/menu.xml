@@ -13,7 +13,8 @@
 
     <item
         android:id="@+id/cartFragment"
-        android:title="" />
+        android:enabled="true"
+        android:title="Placeholder" />
     <!--    <item
             android:id="@+id/cartFragment"
             android:enabled="true"

@@ -34,7 +34,6 @@ class CartItemAdapter :
 
         fun mBind(kala: Kala) {
 
-            Timber.tag("mahdiTest").d("bind")
             binding.specialTextView.text = kala.name
             kala.image.let { listOfImage->
                 val imgUri = listOfImage[0].toUri().buildUpon().build()
@@ -82,6 +81,6 @@ class CartItemDiffUtil : DiffUtil.ItemCallback<Kala>() {
         oldItem: Kala,
         newItem: Kala
     ): Boolean {
-        return (oldItem == newItem)
+        return (oldItem.id == newItem.id)
     }
 }

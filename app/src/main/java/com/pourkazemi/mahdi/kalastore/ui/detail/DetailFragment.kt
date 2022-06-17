@@ -1,9 +1,11 @@
 package com.pourkazemi.mahdi.kalastore.ui.detail
 
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.net.toUri
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -12,16 +14,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 import com.pourkazemi.mahdi.kalastore.R
-import com.pourkazemi.mahdi.kalastore.data.model.Kala
-import com.pourkazemi.mahdi.kalastore.data.model.Order
-import com.pourkazemi.mahdi.kalastore.data.model.Product
-import com.pourkazemi.mahdi.kalastore.data.model.Review
+import com.pourkazemi.mahdi.kalastore.data.model.*
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentDetailBinding
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.singleOrNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -33,23 +35,42 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private val detailViewModel: DetailViewModel by activityViewModels()
     private val detailNavArgs: DetailFragmentArgs by navArgs()
+    val adapter = ReviewItemListAdapter()
 
+    var customer: List<Customer> = listOf()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ReviewItemListAdapter()
 
         detailViewModel.getListOfReview(detailNavArgs.kala.id)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                detailViewModel.flowListCustomer.collectIt {
+                    customer = it
+                }
+            }
+        }
         binding.buyButton.setOnClickListener {
-            detailViewModel.insertKala(
-                Kala(
-                    detailNavArgs.kala.id,
-                    detailNavArgs.kala.name,
-                    detailNavArgs.kala.price,
-                    detailNavArgs.kala.description,
-                    detailNavArgs.kala.image
-                )
-            )
+            if (customer.isEmpty() == true) {
+                Snackbar.make(
+                    requireView(),
+                    resources.getString(R.string.buyCondition),
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
+                customer.let {
+                    detailViewModel.createOrder(
+                        it[0].id, Order(
+                            listOf(
+                                Product(
+                                    detailNavArgs.kala.id, 1
+                                )
+                            )
+                        )
+                    )
+                }
+            }
+
         }
         binding.sendReview.setOnClickListener {
             detailViewModel.sendReview(
@@ -66,8 +87,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
 
         binding.apply {
-
-            description.text = cleanDescription(detailNavArgs.kala.description)
+            description.text = HtmlCompat.fromHtml(
+                detailNavArgs.kala.description, HtmlCompat.FROM_HTML_MODE_LEGACY
+            )
             priceTv.text = detailNavArgs.kala.price
             name.text = detailNavArgs.kala.name
             detailNavArgs.kala.image.let { listOfImage ->
@@ -84,7 +106,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
             reviewList.adapter = adapter
         }
-        detailViewModel.ReviewOfProduct.collectIt(viewLifecycleOwner) {
+        detailViewModel.ReviewOfProduct.collectIt {
             when (it) {
                 is ResultWrapper.Loading -> {
                 }
@@ -107,8 +129,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             .replace("<br />", "")
     }
 
-    private fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
-        lifecycleOwner.lifecycleScope.launch {
+    private fun <T> StateFlow<T>.collectIt(function: (T) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 collect {
                     function.invoke(it)

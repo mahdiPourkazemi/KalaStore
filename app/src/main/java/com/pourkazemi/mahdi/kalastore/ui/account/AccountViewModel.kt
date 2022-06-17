@@ -1,5 +1,6 @@
 package com.pourkazemi.mahdi.kalastore.ui.account
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pourkazemi.mahdi.kalastore.data.Repository
@@ -15,9 +16,9 @@ class AccountViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    val dataBaseCustomer=repository.getAllCustomer().stateIn(
+    val dataBaseCustomer = repository.getAllCustomer().stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Eagerly,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 100L),
         initialValue = listOf()
     )
 
@@ -28,7 +29,17 @@ class AccountViewModel @Inject constructor(
                     is ResultWrapper.Loading -> {
                     }
                     is ResultWrapper.Success -> {
-                        repository.insertCustomer(it.value)
+                        Log.d("mahdiTest", "this is a problem")
+                        repository.insertCustomer(
+                            Customer(
+                                it.value.id,
+                                it.value.email,
+                                it.value.first_name,
+                                it.value.last_name,
+                                it.value.email,
+                                "null" //password deserializer fail
+                            )
+                        )
                     }
                     is ResultWrapper.Error -> {
                     }
@@ -37,7 +48,7 @@ class AccountViewModel @Inject constructor(
         }
     }
 
-    fun deleteCustomerFromDataBase(){
+    fun deleteCustomerFromDataBase() {
         viewModelScope.launch {
             repository.deleteAllCustomer()
         }

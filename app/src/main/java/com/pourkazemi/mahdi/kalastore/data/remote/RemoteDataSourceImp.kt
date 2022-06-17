@@ -25,7 +25,7 @@ class RemoteDataSourceImp @Inject constructor(
     }
 
     override suspend fun searchListKala(search: String): Response<List<Kala>> {
-       return kalaApi.searchListKala(search)
+        return kalaApi.searchListKala(search)
     }
 
     override suspend fun getSpecialSellProduct(): Response<List<Kala>> {
@@ -33,23 +33,33 @@ class RemoteDataSourceImp @Inject constructor(
     }
 
     override suspend fun createCustomer(customer: Customer): Response<Customer> {
-       return kalaApi.createCustomer(customer)
+        return kalaApi.createCustomer(customer)
     }
 
-    override suspend fun createOrder(order: Order) {
-       kalaApi.createOrder(order)
+    override suspend fun createOrder(customerId: Int, order: Order) {
+        kalaApi.createOrder(customerId, order)
+    }
+
+    override suspend fun getOrderList(
+        status: String, customerId: Int
+    ): Response<List<ReceiveOrder>>{
+        return kalaApi.getOrderList(status,customerId)
     }
 
     override suspend fun getListOfReview(product_id: Int): Response<List<Review>> {
-       return kalaApi.getListOfReview(product_id)
+        return kalaApi.getListOfReview(product_id)
     }
 
     override suspend fun createReview(review: Review): Response<Review> {
-       return kalaApi.createReview(review)
+        return kalaApi.createReview(review)
     }
 
     override suspend fun newProductList(date: String): Response<List<Kala>> {
-       return kalaApi.newProductList(date)
+        return kalaApi.newProductList(date)
+    }
+
+    override suspend fun getSpecialProduct(id: String): Response<Kala> {
+       return kalaApi.getSpecialProduct(id)
     }
 
 }

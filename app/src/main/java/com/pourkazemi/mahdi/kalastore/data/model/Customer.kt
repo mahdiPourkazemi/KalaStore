@@ -14,5 +14,5 @@ data class Customer(
     val last_name: String,
     val username: String,
     @Expose(serialize = true, deserialize = false)
-    val password:String=""
+    val password:String
 )
