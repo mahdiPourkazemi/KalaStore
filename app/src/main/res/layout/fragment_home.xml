@@ -339,6 +339,7 @@
                 app:icon="@drawable/ic_baseline_autorenew_24"
                 app:iconGravity="textStart"
                 app:iconSize="@android:dimen/thumbnail_height"
+                app:iconTint="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

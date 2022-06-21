@@ -24,7 +24,7 @@ object DataBaseModule {
         "customer_database"
     ).build()
 
-    @Singleton
+/*    @Singleton
     @Provides
     fun provideKalaDatabase(
         @ApplicationContext context: Context
@@ -32,7 +32,7 @@ object DataBaseModule {
         context.applicationContext,
         KalaDataBase::class.java,
         "order_database"
-    ).build()
+    ).build()*/
 
 
     @Singleton
@@ -41,17 +41,21 @@ object DataBaseModule {
         customerDataBase: CustomerDataBase
     ): CustomerDao = customerDataBase.customerDao()
 
+/*
     @Provides
     fun provideKalaDao(
         kalaDataBase: KalaDataBase
     ): KalaDao = kalaDataBase.kalaDao()
+*/
 
     @Singleton
     @Provides
     fun provideLocalDataSourceImp(
         customerDao: CustomerDao,
+/*
         kalaDao: KalaDao
+*/
     ): LocalDataSource {
-        return LocalDataSourceImp(customerDao,kalaDao)
+        return LocalDataSourceImp(customerDao)
     }
 }

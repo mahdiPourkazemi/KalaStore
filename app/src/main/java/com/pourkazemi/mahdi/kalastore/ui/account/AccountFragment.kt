@@ -36,11 +36,10 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
 
     }
 
-
     private fun initDataBaseCustomer() {
         viewLifecycleOwner.lifecycleScope.launch{
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                accountViewModel.dataBaseCustomer.collectLatest {
+                accountViewModel.dataBaseCustomer.collect {
                     if (it.isNotEmpty()) {
                         binding.apply {
                             idDatabase.text = it[0].id.toString()

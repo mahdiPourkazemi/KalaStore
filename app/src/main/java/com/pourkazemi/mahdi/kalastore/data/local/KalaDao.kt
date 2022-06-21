@@ -5,6 +5,7 @@ import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.Order
 import kotlinx.coroutines.flow.Flow
 
+/*
 @Dao
 interface KalaDao {
 
@@ -16,4 +17,4 @@ interface KalaDao {
 
     @Query("SELECT * FROM kala")
     fun getAllKala(): Flow<List<Kala>>
-}
+}*/

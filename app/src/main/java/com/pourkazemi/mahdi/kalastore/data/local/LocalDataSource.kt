@@ -15,7 +15,7 @@ interface LocalDataSource {
     suspend fun deleteAllCustomer()
     fun getAllCustomer(): Flow<List<Customer>>
 
-    suspend fun insertKala(kala: Kala)
+/*    suspend fun insertKala(kala: Kala)
     suspend fun deleteKala(kala:Kala)
-    fun getAllKala(): Flow<List<Kala>>
+    fun getAllKala(): Flow<List<Kala>>*/
 }

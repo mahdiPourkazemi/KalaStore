@@ -1,5 +1,6 @@
 package com.pourkazemi.mahdi.kalastore.ui.cart
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -25,6 +26,9 @@ class CartItemAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
+
+            Log.d("mahdiTest",currentList.groupingBy {it.id}.eachCount().toString())
+            Log.d("mahdiTest",currentList.count().toString())
             itemView.setOnClickListener {
                 val action =
                     DetailFragmentDirections.toDetailFragment(getItem(bindingAdapterPosition))
@@ -74,13 +78,16 @@ class CartItemDiffUtil : DiffUtil.ItemCallback<Kala>() {
         oldItem: Kala,
         newItem: Kala
     ): Boolean {
-        return oldItem.id == newItem.id
+        Log.d("mahdiTest","item same")
+        return false
     }
 
     override fun areContentsTheSame(
         oldItem: Kala,
         newItem: Kala
     ): Boolean {
-        return (oldItem.id == newItem.id)
+
+        Log.d("mahdiTest","item same")
+        return false
     }
 }

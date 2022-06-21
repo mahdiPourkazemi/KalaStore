@@ -89,9 +89,6 @@ object NetworkModule {
     ).registerTypeAdapter(
         object : TypeToken<MutableList<ReceiveOrder>>() {}.type,
         ReceiveOrderDeserializer(),
-    ).registerTypeAdapter(
-        object : TypeToken<Kala>() {}.type,
-        SoleKalaDeserializer(),
     ).create()
 
     @Provides

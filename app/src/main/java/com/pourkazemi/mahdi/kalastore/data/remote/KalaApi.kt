@@ -56,7 +56,7 @@ interface KalaApi {
         @Body order: Order,
         @Query("consumer_key") key: String = KEY,
         @Query("consumer_secret") secret: String = SECRET,
-    ): Response<List<Order>>
+    ): Any
 
     @GET("orders")
     suspend fun getOrderList(
@@ -66,12 +66,12 @@ interface KalaApi {
         @Query("consumer_secret") secret: String = SECRET,
         ): Response<List<ReceiveOrder>>
 
-    @GET("products/{id}")
-    suspend fun getSpecialProduct(
-        @Path("id") id: String,
+    @GET("products")
+    suspend fun getSpecialProductList(
+        @Query("include") productIds:String,
         @Query("consumer_key") key: String = KEY,
         @Query("consumer_secret") secret: String = SECRET,
-    ): Response<Kala>
+    ): Response<List<Kala>>
 
     @GET("products/reviews")
     suspend fun getListOfReview(

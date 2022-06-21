@@ -29,7 +29,7 @@ class ShearedViewModel @Inject constructor(
     val listOfSpecialSell = _listOfSpecialSell.asStateFlow()
 
     private val _networkState: MutableStateFlow<NetworkStatus> =
-        MutableStateFlow(NetworkStatus.Unavailable)
+        MutableStateFlow(NetworkStatus.Available)
     val networkState = _networkState.asStateFlow()
 
     private val _splashScreen: MutableStateFlow<Boolean> = MutableStateFlow(true)
@@ -62,8 +62,8 @@ class ShearedViewModel @Inject constructor(
 
     fun getListProduct() {
         viewModelScope.launch {
-            repository.getSpecialSellProduct().collect{
-               _listOfSpecialSell.emit(it)
+            repository.getSpecialSellProduct().collect {
+                _listOfSpecialSell.emit(it)
             }
         }
         viewModelScope.launch {
@@ -88,22 +88,34 @@ class ShearedViewModel @Inject constructor(
             }
         }
     }
-    fun getSpecialSell(){
+
+    fun getSpecialSell() {
         viewModelScope.launch {
-            repository.getSpecialSellProduct().collect{
+            repository.getSpecialSellProduct().collect {
                 _listOfSpecialSell.emit(it)
             }
         }
     }
-   fun getKalaList(orderType:String){
-       viewModelScope.launch {
-           repository.getListKala(
-               orderType
-           ).collect {
-               _listOfPopularKala.emit(it)
-           }
-       }
-   }
+
+    fun getKalaList(orderType: String) {
+        viewModelScope.launch {
+            repository.getListKala(
+                orderType
+            ).collect {
+                when (orderType) {
+                    "popularity" -> {
+                        _listOfPopularKala.emit(it)
+                    }
+                    "rating" -> {
+                        _listOfRatingKala.emit(it)
+                    }
+                    "date" -> {
+                        _listOfDateKala.emit(it)
+                    }
+                }
+            }
+        }
+    }
 
 /*    private fun checkEnterAppConnection(context: Context): NetworkStatus {
         return if ((context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager?)?.isDefaultNetworkActive == true) {

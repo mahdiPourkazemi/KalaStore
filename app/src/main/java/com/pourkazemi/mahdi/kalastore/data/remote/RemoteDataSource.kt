@@ -4,6 +4,7 @@ import com.pourkazemi.mahdi.kalastore.App
 import com.pourkazemi.mahdi.kalastore.data.model.*
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -37,5 +38,5 @@ interface RemoteDataSource {
 
     suspend fun newProductList(date: String): Response<List<Kala>>
 
-    suspend fun getSpecialProduct( id: String): Response<Kala>
+    suspend fun getSpecialProductList( productIds: List<Int> ): Response<List<Kala>>
 }

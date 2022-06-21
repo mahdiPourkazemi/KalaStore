@@ -62,7 +62,7 @@ class Repository @Inject constructor(
         return localDataSourceImp.getAllCustomer()
     }
 
-    suspend fun insertKala(kala: Kala) {
+/*    suspend fun insertKala(kala: Kala) {
         localDataSourceImp.insertKala(kala)
     }
 
@@ -72,7 +72,7 @@ class Repository @Inject constructor(
 
     fun getAllKala(): Flow<List<Kala>> {
         return localDataSourceImp.getAllKala()
-    }
+    }*/
 
     suspend fun createOrder(customerId: Int, order: Order) {
         remoteDataSourceImp.createOrder(customerId, order)
@@ -96,7 +96,7 @@ class Repository @Inject constructor(
         remoteDataSourceImp.newProductList(date)
     }
 
-    suspend fun getSpecialProduct(id: String)= safeApiCall(dispatcher){
-        remoteDataSourceImp.getSpecialProduct(id)
+    suspend fun getSpecialProductList(productIds: List<Int>)=safeApiCall(dispatcher) {
+        remoteDataSourceImp.getSpecialProductList(productIds)
     }
 }

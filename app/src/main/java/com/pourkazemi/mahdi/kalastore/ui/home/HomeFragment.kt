@@ -49,18 +49,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 homeViewModel.getSpecialSell()
             }
             errorPopular.setOnClickListener {
-               homeViewModel.getKalaList("popularity")
+                homeViewModel.getKalaList("popularity")
             }
             errorDate.setOnClickListener {
-               homeViewModel.getKalaList("date")
+                homeViewModel.getKalaList("date")
             }
             errorRate.setOnClickListener {
                 homeViewModel.getKalaList("rating")
             }
-/*            refreshLayout.setOnRefreshListener {
-                homeViewModel.getListProduct()
-                refreshLayout.isRefreshing = false
-            }*/
         }
         sliderInit()
         popularListInit()
@@ -70,19 +66,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun rateListInit() {
-        homeViewModel.listOfRatingKala.collectIt(viewLifecycleOwner) {
-            when (it) {
-                is ResultWrapper.Loading -> {
-                    binding.shimmerRvRate.startShimmer()
-                }
-                is ResultWrapper.Success -> {
-                    binding.apply {
-                        success(rateRecyclerView, shimmerRvRate, errorRate)
+        homeViewModel.listOfRatingKala.collectIt {
+            binding.apply {
+                when (it) {
+                    is ResultWrapper.Loading -> {
+                        loading(rateRecyclerView, shimmerRvRate, errorRate)
                     }
-                    rateAdapter.submitList(it.value)
-                }
-                is ResultWrapper.Error -> {
-                    binding.apply {
+                    is ResultWrapper.Success -> {
+                        success(rateRecyclerView, shimmerRvRate, errorRate)
+                        rateAdapter.submitList(it.value)
+                    }
+                    is ResultWrapper.Error -> {
                         error(rateRecyclerView, shimmerRvRate, errorRate)
                     }
                 }
@@ -91,19 +85,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun dateListInit() {
-        homeViewModel.listOfDateKala.collectIt(viewLifecycleOwner) {
-            when (it) {
-                is ResultWrapper.Loading -> {
-                    binding.shimmerRvDate.startShimmer()
-                }
-                is ResultWrapper.Success -> {
-                    binding.apply {
-                        success(dateRecyclerView, shimmerRvDate, errorDate)
+        homeViewModel.listOfDateKala.collectIt {
+            binding.apply {
+                when (it) {
+                    is ResultWrapper.Loading -> {
+                        loading(dateRecyclerView, shimmerRvDate, errorDate)
                     }
-                    popularAdapter.submitList(it.value)
-                }
-                is ResultWrapper.Error -> {
-                    binding.apply {
+                    is ResultWrapper.Success -> {
+                        success(dateRecyclerView, shimmerRvDate, errorDate)
+                        popularAdapter.submitList(it.value)
+                    }
+                    is ResultWrapper.Error -> {
                         error(dateRecyclerView, shimmerRvDate, errorDate)
                     }
                 }
@@ -112,19 +104,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun popularListInit() {
-        homeViewModel.listOfPopularKala.collectIt(viewLifecycleOwner) {
-            when (it) {
-                is ResultWrapper.Loading -> {
-                    binding.shimmerRvPopular.startShimmer()
-                }
-                is ResultWrapper.Success -> {
-                    binding.apply {
-                        success(popularRecyclerView, shimmerRvPopular, errorPopular)
+        homeViewModel.listOfPopularKala.collectIt {
+            binding.apply {
+                when (it) {
+                    is ResultWrapper.Loading -> {
+                        loading(popularRecyclerView, shimmerRvPopular, errorPopular)
                     }
-                    dateAdapter.submitList(it.value)
-                }
-                is ResultWrapper.Error -> {
-                    binding.apply {
+                    is ResultWrapper.Success -> {
+                        success(popularRecyclerView, shimmerRvPopular, errorPopular)
+                        dateAdapter.submitList(it.value)
+                    }
+                    is ResultWrapper.Error -> {
                         error(popularRecyclerView, shimmerRvPopular, errorPopular)
                     }
                 }
@@ -133,10 +123,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun sliderInit() {
-        homeViewModel.listOfSpecialSell.collectIt(viewLifecycleOwner) {
+        homeViewModel.listOfSpecialSell.collectIt {
             when (it) {
                 is ResultWrapper.Loading -> {
                     binding.shimmerSlider.startShimmer()
+                    binding.shimmerSlider.visibility = View.VISIBLE
+                    binding.errorSlider.visibility = View.GONE
                 }
                 is ResultWrapper.Success -> {
                     binding.shimmerSlider.stopShimmer()
@@ -155,11 +147,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun <T> StateFlow<T>.collectIt(lifecycleOwner: LifecycleOwner, function: (T) -> Unit) {
-        lifecycleOwner.lifecycleScope.launch {
+    private fun <T> StateFlow<T>.collectIt(function: (T) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 collect {
                     function.invoke(it)
+                    /*when(it){
+                        is ResultWrapper.Loading->{
+
+                        }
+                        is ResultWrapper.Success<*> ->{
+                            function.invoke(it)
+                        }
+                        is ResultWrapper.Error<*> ->{
+
+                        }
+                    }*/
                 }
             }
         }
@@ -185,5 +188,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         recycleView.visibility = View.GONE
         shimmerFrameLayout.visibility = View.VISIBLE
         errorButton.visibility = View.VISIBLE
+    }
+
+    private fun loading(
+        recycleView: RecyclerView,
+        shimmerFrameLayout: ShimmerFrameLayout,
+        errorButton: Button
+    ) {
+        shimmerFrameLayout.startShimmer()
+        recycleView.visibility = View.GONE
+        shimmerFrameLayout.visibility = View.VISIBLE
+        errorButton.visibility = View.GONE
     }
 }

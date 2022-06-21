@@ -25,11 +25,12 @@ class NoInternetFragment : Fragment(R.layout.fragment_no_internet) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+       /* activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity?.onBackPressed()
             }
-        })
+        })*/
+       // findNavController().
     }
 
 }

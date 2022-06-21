@@ -8,7 +8,9 @@ import javax.inject.Inject
 
 class LocalDataSourceImp @Inject constructor(
     private val customerDao: CustomerDao,
+/*
     private val kalaDao: KalaDao
+*/
 ) : LocalDataSource {
     override suspend fun insertCustomer(customer: Customer) {
         customerDao.insertCustomer(customer)
@@ -26,7 +28,7 @@ class LocalDataSourceImp @Inject constructor(
         return customerDao.getAllCustomer()
     }
 
-    override suspend fun insertKala(kala: Kala) {
+/*    override suspend fun insertKala(kala: Kala) {
         kalaDao.insertKala(kala)
     }
 
@@ -36,5 +38,5 @@ class LocalDataSourceImp @Inject constructor(
 
     override fun getAllKala(): Flow<List<Kala>> {
         return kalaDao.getAllKala()
-    }
+    }*/
 }

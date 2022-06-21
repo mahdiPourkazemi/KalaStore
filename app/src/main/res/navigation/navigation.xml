@@ -5,6 +5,18 @@
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
     <action
+        android:id="@+id/to_noInternetFragment"
+        app:destination="@id/noInternetFragment"
+         />
+    <action
+        android:id="@+id/to_searchFragment"
+        app:destination="@id/searchFragment"
+        app:popUpTo="@id/navigation" />
+    <action
+        android:id="@+id/to_cartFragment"
+        app:destination="@id/cartFragment"
+        app:popUpTo="@id/navigation" />
+    <action
         android:id="@+id/to_detailFragment"
         app:destination="@id/detailFragment" />
     <fragment

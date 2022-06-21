@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,7 @@ import com.pourkazemi.mahdi.kalastore.data.model.Kala
 import com.pourkazemi.mahdi.kalastore.data.model.Order
 import com.pourkazemi.mahdi.kalastore.data.model.Product
 import com.pourkazemi.mahdi.kalastore.databinding.FragmentCartBinding
+import com.pourkazemi.mahdi.maktab_hw_18_1.util.ResultWrapper
 import com.pourkazemi.mahdi.maktab_hw_18_1.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
@@ -29,7 +31,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         FragmentCartBinding::bind
     )
 
-    private val cardViewModel: CardViewModel by activityViewModels()
+    private val cardViewModel: CardViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,8 +43,10 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                cardViewModel.listOfOrderKala.collectLatest {
-                    adapter.submitList(it)
+                cardViewModel.listOfOrderKala.collect {
+                    when(it){
+                       is ResultWrapper.Success-> adapter.submitList(it.value)
+                    }
                 }
             }
         }

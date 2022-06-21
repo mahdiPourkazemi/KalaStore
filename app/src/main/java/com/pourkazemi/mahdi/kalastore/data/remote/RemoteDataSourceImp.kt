@@ -58,8 +58,8 @@ class RemoteDataSourceImp @Inject constructor(
         return kalaApi.newProductList(date)
     }
 
-    override suspend fun getSpecialProduct(id: String): Response<Kala> {
-       return kalaApi.getSpecialProduct(id)
+    override suspend fun getSpecialProductList(productIds: List<Int>): Response<List<Kala>> {
+        return kalaApi.getSpecialProductList(productIds.toString())
     }
 
 }

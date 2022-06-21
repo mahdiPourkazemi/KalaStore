@@ -49,10 +49,10 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.toolbar.ShapeableImageView.setOnClickListener {
-            mNavHost.navController.navigate(R.id.searchFragment)
+            mNavHost.navController.navigate(R.id.to_searchFragment)
         }
         binding.fab.setOnClickListener {
-           mNavHost.navController.navigate(R.id.cartFragment)
+           mNavHost.navController.navigate(R.id.to_cartFragment)
         }
 
         lifecycleScope.launch {
@@ -60,14 +60,12 @@ class MainActivity : AppCompatActivity() {
                 activityViewModel.networkState.collect {
                     when (it) {
                         is NetworkStatus.Available -> {
-                            Timber.tag("mahdiTest").d("Available")
                             activityViewModel.getListProduct()
                             categoryViewModel.getListKalaCategory()
                             mNavHost.navController.popBackStack(R.id.noInternetFragment, true)
                         }
                         is NetworkStatus.Unavailable -> {
-                            Timber.tag("mahdiTest").d("Unavailable")
-                            mNavHost.navController.navigate(R.id.noInternetFragment)
+                            mNavHost.navController.navigate(R.id.to_noInternetFragment)
                         }
                     }
                 }
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     binding.toolbar.ShapeableImageView.visibility = View.GONE
                 }
                 R.id.detailFragment ->binding.bottomNavigationLayout.visibility=View.GONE
-                R.id.cartFragment -> binding.bottomNavigationLayout.visibility=View.GONE
+                //R.id.cartFragment -> binding.bottomNavigationLayout.visibility=View.GONE
                 else->{
                     binding.bottomNavigationLayout.visibility=View.VISIBLE
                     binding.toolbar.ShapeableImageView.visibility = View.VISIBLE
